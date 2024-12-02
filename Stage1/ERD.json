@@ -1,0 +1,98 @@
+{
+    "entities": [
+      {
+        "name": "Reader",
+        "attributes": [
+          {"name": "ReaderID", "type": "Primary Key"},
+          {"name": "SubscriptionID", "type": "Foreign Key"}
+        ]
+      },
+      {
+        "name": "Subscription",
+        "attributes": [
+          {"name": "SubscriptionID", "type": "Primary Key"},
+          {"name": "Subscription Type", "type": "String"},
+          {"name": "Renewal Date", "type": "Date"},
+          {"name": "Purchase Date", "type": "Date"}
+        ]
+      },
+      {
+        "name": "Penalty",
+        "attributes": [
+          {"name": "PenaltyID", "type": "Primary Key"},
+          {"name": "Type", "type": "String"},
+          {"name": "Cost", "type": "Float"}
+        ]
+      },
+      {
+        "name": "Wage",
+        "attributes": [
+          {"name": "WageID", "type": "Primary Key"},
+          {"name": "Amount", "type": "Float"},
+          {"name": "Pay Day", "type": "Date"}
+        ]
+      },
+      {
+        "name": "Employee",
+        "attributes": [
+          {"name": "EmployeeID", "type": "Primary Key"},
+          {"name": "WageID", "type": "Foreign Key"}
+        ]
+      },
+      {
+        "name": "Asset",
+        "attributes": [
+          {"name": "AssetID", "type": "Primary Key"},
+          {"name": "Type", "type": "String"},
+          {"name": "InsuranceID", "type": "Foreign Key"}
+        ]
+      },
+      {
+        "name": "Insurance",
+        "attributes": [
+          {"name": "InsuranceID", "type": "Primary Key"},
+          {"name": "Covered Amount", "type": "Float"},
+          {"name": "Start Date", "type": "Date"},
+          {"name": "End Date", "type": "Date"}
+        ]
+      },
+      {
+        "name": "Procurement",
+        "attributes": [
+          {"name": "ProcurementID", "type": "Primary Key"},
+          {"name": "Source", "type": "String"},
+          {"name": "ProcurmentDate", "type": "Date"},
+          {"name": "Cost", "type": "Float"},
+          {"name": "AssetID", "type": "Foreign Key"}
+        ]
+      }
+    ],
+    
+    "relationships": [
+      {
+        "from": "Subscription",
+        "to": "Reader",
+        "type": "One-to-Many"
+      },
+      {
+        "from": "Subscription",
+        "to": "Penalty",
+        "type": "Many-to-Many"
+      },
+      {
+        "from": "Employee",
+        "to": "Wage",
+        "type": "One-to-One"
+      },
+      {
+        "from": "Asset",
+        "to": "Insurance",
+        "type": "One-to-One"
+      },
+      {
+        "from": "Procurement",
+        "to": "Asset",
+        "type": "One-to-Many"
+      }
+    ]
+  }
