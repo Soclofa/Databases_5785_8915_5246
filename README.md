@@ -96,4 +96,16 @@ While the system covers core library operations, there are some aspects that are
 ### Conclusion
 This Library Billing System provides a foundational design to efficiently manage a library's subscriptions, penalties, employee wages, assets, and procurement processes. Future enhancements could expand its scope to cover more detailed aspects such as book borrowing, payment processing, and reporting.
 
+## Design Specifications and Entity Relationship Diagram
+
+### Data Structure Diagram (DSD)
+Below is the Data Structure Diagram (DSD) representing the logical flow and structure of the system:
+
+![Data Structure Diagram](DSD.jpeg)
+
+### Entity Relationship Diagram (ERD)
+The following Entity Relationship Diagram (ERD) illustrates the relationships between the various entities in the system:
+
+![Entity Relationship Diagram](ERD.jpeg)
+
 
