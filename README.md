@@ -9,6 +9,18 @@ This project represents a **Library Billing System** designed to track subscript
 - **Asset Tracking**: Monitor physical library assets, including insurance and procurement.
 - **Financial Tracking**: Record costs associated with penalties, procurement, and employee wages.
 
+## Design Specifications and Entity Relationship Diagram
+
+### Data Structure Diagram (DSD)
+Below is the Data Structure Diagram (DSD) representing the logical flow and structure of the system:
+
+![Data Structure Diagram](DSD.jpeg)
+
+### Entity Relationship Diagram (ERD)
+The following Entity Relationship Diagram (ERD) illustrates the relationships between the various entities in the system:
+
+![Entity Relationship Diagram](ERD.jpeg)
+
 ## Entities and Relationships
 
 ### Entities
@@ -90,22 +102,7 @@ The Library Billing System supports the following use cases:
 - **Employees**: Employees can view their wage records and interact with the system for asset-related tasks.
 - **Readers**: Readers' information will be managed through their subscriptions and penalties.
 
-### Parts of the Process Not Covered
-While the system covers core library operations, there are some aspects that are not included in the current design:
-
 ### Conclusion
 This Library Billing System provides a foundational design to efficiently manage a library's subscriptions, penalties, employee wages, assets, and procurement processes. Future enhancements could expand its scope to cover more detailed aspects such as book borrowing, payment processing, and reporting.
-
-## Design Specifications and Entity Relationship Diagram
-
-### Data Structure Diagram (DSD)
-Below is the Data Structure Diagram (DSD) representing the logical flow and structure of the system:
-
-![Data Structure Diagram](DSD.jpeg)
-
-### Entity Relationship Diagram (ERD)
-The following Entity Relationship Diagram (ERD) illustrates the relationships between the various entities in the system:
-
-![Entity Relationship Diagram](ERD.jpeg)
 
 
