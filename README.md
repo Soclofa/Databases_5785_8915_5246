@@ -5,7 +5,7 @@
 
 # Library Billing System
 
-#STAGE 1
+# STAGE 1
 
 ## Overview
 This project represents a **Library Billing System** designed to track subscriptions, penalties, employee wages, assets, and procurement processes within a library. It focuses on managing the core aspects of library operations and their financial transactions.
