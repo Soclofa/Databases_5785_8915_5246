@@ -26,13 +26,13 @@ This project represents a **Library Billing System** designed to track subscript
 Below is the Data Structure Diagram (DSD) representing the logical flow and structure of the system:
 
 **Data Structure Diagram**  
-![Data Structure Diagram](DSD.jpeg)
+![Data Structure Diagram](Stage1/DSD.jpeg)
 
 ### Entity Relationship Diagram (ERD)
 The following Entity Relationship Diagram (ERD) illustrates the relationships between the various entities in the system:
 
 **Entity Relationship Diagram**  
-![Entity Relationship Diagram](ERD.jpeg)
+![Entity Relationship Diagram](Stage1/ERD.jpeg)
 
 ---
 
