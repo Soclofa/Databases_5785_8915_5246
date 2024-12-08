@@ -98,16 +98,6 @@ This database schema represents a comprehensive library management system that i
 
 ---
 
-### Relationships
-
-- **Reader to Subscription**: One-to-Many relationship (A reader can have one subscription, and a subscription can have many readers).
-- **Subscription to Penalty**: Many-to-Many relationship (A subscription can incur multiple penalties, and a penalty can be applied to many subscriptions).
-- **Employee to Wage**: One-to-One relationship (Each employee has one wage record).
-- **Asset to Insurance**: One-to-One relationship (Each asset has one insurance policy).
-- **Procurement to Asset**: One-to-Many relationship (An asset may be procured multiple times).
-
----
-
 ## Design Rationale
 
 ### Why These Entities Were Chosen
@@ -121,25 +111,9 @@ The design of the Library Billing System is centered around the essential operat
 - **Asset and Insurance**: Assets represent library property, and insurance coverage is necessary for risk management.
 - **Procurement**: This entity is critical for tracking new acquisitions and maintaining inventory levels.
 
-### How the Entities and Relationships Work Together
-
-The system’s design facilitates the efficient management of the library’s core functions:
-
-# Relationships Summary (ERD)
-
-## General Billing Relationships
-
-- **Billing** has a **general relationship** with various expense and income categories:
-  1. **Subscription Monthly Income**: Captures income from subscriptions.
-  2. **Penalty Income**: Captures income from penalties.
-  3. **Asset Expense**: Captures expenses for purchasing or maintaining assets.
-  4. **Wage Expense**: Captures expenses related to employee wages.
-  5. **Insurance Expense**: Captures expenses related to library insurance.
-- These relationships allow the library to track every financial transaction and categorize it.
-
 ---
 
-## Specific Relationships
+## Relationships
 
 1. **Reader ↔ Subscription**
    - A **Reader** is part of a **Subscription** that can have multiple readers.
@@ -184,6 +158,13 @@ The system’s design facilitates the efficient management of the library’s co
 
 12. **Insurance ↔ Billing**
     - The **Insurance Expense** links payments for monthly insurance premiums to **Billing**.
+
+13. **Billing** has a with various expense and income categories:
+    1. **Subscription Monthly Income**: Captures income from subscriptions.
+    2. **Penalty Income**: Captures income from penalties.
+    3. **Asset Expense**: Captures expenses for purchasing or maintaining assets.
+    4. **Wage Expense**: Captures expenses related to employee wages.
+    5. **Insurance Expense**: Captures expenses related to library insurance.
 
 ---
 
