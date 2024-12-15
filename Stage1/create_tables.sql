@@ -83,3 +83,21 @@ ALTER SEQUENCE penalty_penaltyid_seq RESTART 1;
 ALTER SEQUENCE wage_wageid_seq RESTART 1;
 ALTER SEQUENCE subscription_subscriptionid_seq RESTART 1;
 ALTER SEQUENCE insurance_insuranceid_seq RESTART 1;
+
+ALTER SEQUENCE procurement_procurementid_seq RESTART 1;
+ALTER SEQUENCE penalty_penaltyid_seq RESTART 1;
+ALTER SEQUENCE wage_wageid_seq RESTART 1;
+ALTER SEQUENCE subscription_subscriptionid_seq RESTART 1;
+ALTER SEQUENCE insurance_insuranceid_seq RESTART 1;
+
+
+
+ALTER SEQUENCE Employee_EmployeeID_seq RESTART 1;
+ALTER SEQUENCE BookLoan_BookLoanId_seq RESTART 1;
+ALTER SEQUENCE Billing_BillingID_seq RESTART 1;
+ALTER SEQUENCE Subscription_SubscriptionID_seq RESTART 1;
+ALTER SEQUENCE Penalty_PenaltyID_seq RESTART 1;
+ALTER SEQUENCE Reader_ReaderID_seq RESTART 1;
+ALTER SEQUENCE Asset_AssetID_seq RESTART 1;
+ALTER SEQUENCE Book_BookID_seq RESTART 1;
+ALTER SEQUENCE Insurance_InsuranceID_seq RESTART 1;

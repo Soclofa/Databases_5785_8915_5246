@@ -14,20 +14,20 @@ fake = Faker()
 # Number of records to generate for each table
 
 NUM_EMPLOYEES = 100
-NUM_BOOK_LOANS = 20000
+NUM_BOOK_LOANS = 200000
 NUM_BILLINGS = 2000000
-NUM_ASSET_EXPENSES = 15000
+NUM_ASSET_EXPENSES = 150000
 NUM_SUBSCRIPTION_TIERS = 5
-NUM_SUBSCRIPTIONS = 20000
-NUM_PENALTIES = 9000
-NUM_READERS = 35000
+NUM_SUBSCRIPTIONS = 200000
+NUM_PENALTIES = 90000
+NUM_READERS = 350000
 NUM_WAGES = 100
-NUM_ASSETS = 20000
-NUM_PENALTY_INCOME = 8000
-NUM_SUBSCRIPTION_MONTHLY_INCOME = 25000
+NUM_ASSETS = 200000
+NUM_PENALTY_INCOME = 80000
+NUM_SUBSCRIPTION_MONTHLY_INCOME = 250000
 NUM_WAGE_EXPENSE = 900
-NUM_BOOKS = 15000
-NUM_INSURANCES = 12000
+NUM_BOOKS = 150000
+NUM_INSURANCES = 120000
 
 penalty_types = ['Late Fee', 'Damage Fee', 'Lost Item Fee']
 employee_positions = ['Librarian', 'Assistant', 'Manager']
@@ -60,7 +60,7 @@ for i in range(NUM_EMPLOYEES + 1):
     cur.execute("INSERT INTO Employee (EmployeeID) VALUES (%s)", [i])
 
 # Book Loan
-for i in range(NUM_BOOK_LOANS + 1):
+for i in range(NUM_BOOK_LOANS + 2):
     cur.execute("INSERT INTO Book_Loan (BookLoanId) VALUES (%s)", [i])
 
 # Subscription
@@ -82,6 +82,7 @@ for i in range(NUM_BILLINGS + 1):
                 (amount, random_date, i))
 
 # Asset Expense
+print("Asset Expense")
 billing_in_asset_expense = []
 for i in range(NUM_ASSET_EXPENSES):
     source = fake.company()
@@ -94,18 +95,18 @@ for i in range(NUM_ASSET_EXPENSES):
         "INSERT INTO Asset_Expense (Source, BillingID) VALUES (%s, %s)", (source, billing_id))
 
 # Asset
+print("Asset")
 for i in range(NUM_ASSETS + 1):
     type = random.choice(asset_types)
     cost = random.randint(50, 500)
-    billing_id = random.randint(1, NUM_BILLINGS)
-    while billing_id not in billing_in_asset_expense:
-        billing_id = random.randint(1, NUM_BILLINGS)
+    billing_id = random.choice(billing_in_asset_expense)
     cur.execute("INSERT INTO Asset (Type, cost, BillingID, AssetID) VALUES (%s, %s, %s, %s)",
                 (type, cost, billing_id, i))
 
 
 # Penalty
-for i in range(NUM_PENALTIES):
+print("Penalty")
+for i in range(NUM_PENALTIES + 1):
     cost = random.uniform(5.00, 50.00)
     description = f"Penalty Description_{i+1}"
     type = random.choice(penalty_types)
@@ -138,7 +139,7 @@ for i in range(NUM_WAGES):
     cur.execute("INSERT INTO Wage (Amount, monthly_payment_date, EmployeeID) VALUES (%s, %s, %s)",
                 (amount, monthly_payment_date, employee_id))
 
-print("penalty")
+print("Penalty Income")
 # Penalty Income, Subscription Monthly Income, Wage Expense
 penalties_uesd = []
 for i in range(NUM_PENALTY_INCOME):
