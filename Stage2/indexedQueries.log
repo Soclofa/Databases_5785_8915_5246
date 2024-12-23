@@ -1,0 +1,1359 @@
+Library Billing System-# \timing
+Timing is on.
+Library Billing System-# PREPARE reader_by_tier(varchar) AS
+Library Billing System-# SELECT 
+    r.ReaderID,
+    s.SubscriptionID,
+    s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+SELECT 
+Library Billing System-#     r.ReaderID,
+    s.SubscriptionID,
+    s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    r.ReaderID,
+Library Billing System-#     s.SubscriptionID,
+    s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    s.SubscriptionID,
+Library Billing System-#     s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    s.Renewal_Date,
+Library Billing System-#     st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    st.Cost as subscription_cost
+Library Billing System-# FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+FROM Reader r
+Library Billing System-# JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+Library Billing System-# JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+Library Billing System-# WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+WHERE st.Tier = $1
+Library Billing System-# ORDER BY s.Renewal_Date;
+ORDER BY s.Renewal_Date;
+ERROR:  syntax error at or near "clear"
+LINE 1: clear
+        ^
+Time: 23.024 ms
+Library Billing System=# PREPARE reader_by_tier(varchar) AS
+Library Billing System-# SELECT 
+    r.ReaderID,
+    s.SubscriptionID,
+    s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+SELECT 
+Library Billing System-#     r.ReaderID,
+    s.SubscriptionID,
+    s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    r.ReaderID,
+Library Billing System-#     s.SubscriptionID,
+    s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    s.SubscriptionID,
+Library Billing System-#     s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    s.Renewal_Date,
+Library Billing System-#     st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    st.Cost as subscription_cost
+Library Billing System-# FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+FROM Reader r
+Library Billing System-# JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+Library Billing System-# JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+Library Billing System-# WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+WHERE st.Tier = $1
+Library Billing System-# ORDER BY s.Renewal_Date;
+ORDER BY s.Renewal_Date;
+ERROR:  prepared statement "reader_by_tier" already exists
+Time: 19.377 ms
+Library Billing System=# 
+Library Billing System=# SELECT 
+    s.Tier,
+    st.Cost,
+    COUNT(*) as number_of_subscribers,
+    SUM(st.Cost) as total_revenue
+FROM Subscription s
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+GROUP BY s.Tier, st.Cost
+ORDER BY total_revenue DESC;
+SELECT 
+Library Billing System-#     s.Tier,
+    st.Cost,
+    COUNT(*) as number_of_subscribers,
+    SUM(st.Cost) as total_revenue
+FROM Subscription s
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+GROUP BY s.Tier, st.Cost
+ORDER BY total_revenue DESC;
+    s.Tier,
+Library Billing System-#     st.Cost,
+    COUNT(*) as number_of_subscribers,
+    SUM(st.Cost) as total_revenue
+FROM Subscription s
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+GROUP BY s.Tier, st.Cost
+ORDER BY total_revenue DESC;
+    st.Cost,
+Library Billing System-#     COUNT(*) as number_of_subscribers,
+    SUM(st.Cost) as total_revenue
+FROM Subscription s
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+GROUP BY s.Tier, st.Cost
+ORDER BY total_revenue DESC;
+    COUNT(*) as number_of_subscribers,
+Library Billing System-#     SUM(st.Cost) as total_revenue
+FROM Subscription s
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+GROUP BY s.Tier, st.Cost
+ORDER BY total_revenue DESC;
+    SUM(st.Cost) as total_revenue
+Library Billing System-# FROM Subscription s
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+GROUP BY s.Tier, st.Cost
+ORDER BY total_revenue DESC;
+FROM Subscription s
+Library Billing System-# JOIN Subscription_Tiers st ON s.Tier = st.Tier
+GROUP BY s.Tier, st.Cost
+ORDER BY total_revenue DESC;
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+Library Billing System-# GROUP BY s.Tier, st.Cost
+ORDER BY total_revenue DESC;
+GROUP BY s.Tier, st.Cost
+Library Billing System-# ORDER BY total_revenue DESC;
+ORDER BY total_revenue DESC;
+
+   tier   | cost | number_of_subscribers | total_revenue 
+----------+------+-----------------------+---------------
+ Elite    |  150 |                  3962 |        594300
+ Family   |   80 |                  4006 |        320480
+ Premium  |   50 |                  4019 |        200950
+ Standard |   25 |                  4005 |        100125
+ Basic    |   10 |                  4009 |         40090
+(5 rows)
+
+Time: 147.148 ms
+Library Billing System=# SELECT 
+Library Billing System-#     bl.BookLoanId,
+    p.PenaltyID,
+    p.Cost as penalty_amount
+FROM Book_Loan bl
+JOIN Penalty p ON p.BookLoanId = bl.BookLoanId
+WHERE p.Status = '0'
+ORDER BY p.Cost DESC;    bl.BookLoanId,
+Library Billing System-#     p.PenaltyID,
+    p.Cost as penalty_amount
+FROM Book_Loan bl
+JOIN Penalty p ON p.BookLoanId = bl.BookLoanId
+WHERE p.Status = '0'
+ORDER BY p.Cost DESC;    p.PenaltyID,
+Library Billing System-#     p.Cost as penalty_amount
+FROM Book_Loan bl
+JOIN Penalty p ON p.BookLoanId = bl.BookLoanId
+WHERE p.Status = '0'
+ORDER BY p.Cost DESC;    p.Cost as penalty_amount
+Library Billing System-# FROM Book_Loan bl
+JOIN Penalty p ON p.BookLoanId = bl.BookLoanId
+WHERE p.Status = '0'
+ORDER BY p.Cost DESC;FROM Book_Loan bl
+Library Billing System-# JOIN Penalty p ON p.BookLoanId = bl.BookLoanId
+WHERE p.Status = '0'
+ORDER BY p.Cost DESC;JOIN Penalty p ON p.BookLoanId = bl.BookLoanId
+Library Billing System-# WHERE p.Status = '0'
+ORDER BY p.Cost DESC;WHERE p.Status = '0'
+Library Billing System-# ORDER BY p.Cost DESC;ORDER BY p.Cost DESC;
+ bookloanid | penaltyid |   penalty_amount   
+------------+-----------+--------------------
+       1467 |      4572 |  49.99658983819991
+       5239 |      1211 | 49.990474348782996
+      15368 |      3143 |  49.97829422399194
+       9808 |      5228 | 49.960390607476505
+      13820 |      2393 |  49.95422855532663
+        730 |      8103 |  49.94477251726486
+       4323 |      1738 |  49.94422756705416
+       6601 |      7994 | 49.919049692008585
+      12162 |      1091 | 49.916904595578636
+       1472 |      5037 | 49.902569957279184
+      14240 |      3975 |  49.88438199049646
+      19951 |      3902 |  49.88247653589667
+      12669 |      2206 | 49.875471213348156
+      13172 |      3818 |  49.87513078762463
+      15032 |      6161 |  49.87486507172409
+       3594 |      3841 |    49.873108973025
+       2752 |      6317 |  49.86474035067432
+      11439 |      1168 |  49.85693341483255
+      11285 |       317 | 49.851278054604045
+       7981 |       436 |   49.8401497194682
+       9899 |      6206 |  49.83783682470641
+...skipping...
+       3021 |      3560 |  5.308211240630437
+       5379 |       354 | 5.2989461891868554
+      15078 |      4976 |  5.286516312126623
+      15568 |      5694 |  5.260040477877189
+        305 |      6665 |  5.236539579796536
+       2461 |      6266 |  5.217838077464155
+       8712 |      1981 |  5.201635510012987
+      11497 |      3718 |  5.171327799790558
+      18602 |      1425 |  5.168372326321525
+       5450 |      4434 |  5.164842183300069
+      16330 |      1643 |  5.163260819224102
+       3044 |      7184 |  5.158986489805379
+       7933 |      7177 | 5.1498766471416655
+      18384 |      7791 |  5.145722804087549
+      18039 |      1939 |   5.10900793072749
+      12801 |      7235 |   5.10679960395264
+      15438 |      1023 | 5.0826525911558065
+      18128 |      4472 |  5.046435373959306
+      12024 |      6819 |  5.039638022980439
+       7778 |      2018 |  5.034107690366602
+      13751 |      3055 |  5.024526811847573
+(3853 rows)
+
+Time: 24.593 ms
+Library Billing System=# SELECT 
+Library Billing System-#     EXTRACT(MONTH FROM b.Date) as month,
+    'Wages' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Wage_Expense we ON we.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Insurance' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;    EXTRACT(MONTH FROM b.Date) as month,
+Library Billing System-#     'Wages' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Wage_Expense we ON we.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Insurance' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;    'Wages' as expense_type,
+Library Billing System-#     SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Wage_Expense we ON we.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Insurance' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;    SUM(b.amount) as total_amount
+Library Billing System-# FROM Billing b
+JOIN Wage_Expense we ON we.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Insurance' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;FROM Billing b
+Library Billing System-# JOIN Wage_Expense we ON we.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Insurance' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;JOIN Wage_Expense we ON we.BillingID = b.BillingID
+Library Billing System-# GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Insurance' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;GROUP BY EXTRACT(MONTH FROM b.Date)
+Library Billing System-# UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Insurance' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;UNION ALL
+Library Billing System-# SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Insurance' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;SELECT 
+Library Billing System-#     EXTRACT(MONTH FROM b.Date) as month,
+    'Insurance' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;    EXTRACT(MONTH FROM b.Date) as month,
+Library Billing System-#     'Insurance' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;    'Insurance' as expense_type,
+Library Billing System-#     SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;    SUM(b.amount) as total_amount
+Library Billing System-# FROM Billing b
+JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;FROM Billing b
+Library Billing System-# JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;JOIN Insurance_Expense ie ON ie.BillingID = b.BillingID 
+Library Billing System-# GROUP BY EXTRACT(MONTH FROM b.Date)
+UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;GROUP BY EXTRACT(MONTH FROM b.Date)
+Library Billing System-# UNION ALL
+SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;UNION ALL
+Library Billing System-# SELECT 
+    EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;SELECT 
+Library Billing System-#     EXTRACT(MONTH FROM b.Date) as month,
+    'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;    EXTRACT(MONTH FROM b.Date) as month,
+Library Billing System-#     'Assets' as expense_type,
+    SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;    'Assets' as expense_type,
+Library Billing System-#     SUM(b.amount) as total_amount
+FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;    SUM(b.amount) as total_amount
+Library Billing System-# FROM Billing b
+JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;FROM Billing b
+Library Billing System-# JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;JOIN Asset_Expense ae ON ae.BillingID = b.BillingID
+Library Billing System-# GROUP BY EXTRACT(MONTH FROM b.Date)
+ORDER BY month, expense_type;GROUP BY EXTRACT(MONTH FROM b.Date)
+Library Billing System-# ORDER BY month, expense_type;ORDER BY month, expense_type;
+ month | expense_type |    total_amount    
+-------+--------------+--------------------
+     1 | Assets       |  644806.1686595861
+     1 | Insurance    |  494334.2489437023
+     1 | Wages        |  31641.37250582767
+     2 | Assets       |  556329.5322044609
+     2 | Insurance    | 412361.36960574065
+     2 | Wages        |  37129.47218465907
+     3 | Assets       |  638795.5614232119
+     3 | Insurance    |   528334.532210101
+     3 | Wages        |  41456.74049276088
+     4 | Assets       |  653204.8542388949
+     4 | Insurance    |  490284.0457590659
+     4 | Wages        | 47173.248687218664
+     5 | Assets       |  630600.2267819782
+     5 | Insurance    |  542616.1686567743
+     5 | Wages        |  39524.50705334634
+     6 | Assets       |    613750.04764834
+     6 | Insurance    | 521558.93184746813
+     6 | Wages        | 34236.116300679634
+     7 | Assets       |  645777.0448943765
+     7 | Insurance    | 509921.86562632886
+     7 | Wages        |  39624.24320759757
+...skipping...
+     6 | Assets       |    613750.04764834
+     6 | Insurance    | 521558.93184746813
+     6 | Wages        | 34236.116300679634
+     7 | Assets       |  645777.0448943765
+     7 | Insurance    | 509921.86562632886
+     7 | Wages        |  39624.24320759757
+     8 | Assets       |   651797.847094413
+     8 | Insurance    | 511106.95506003255
+     8 | Wages        |  35682.40252050958
+     9 | Assets       |  607541.7721823646
+     9 | Insurance    | 502219.03783190995
+     9 | Wages        | 30950.062148187237
+    10 | Assets       |  648912.4131755868
+    10 | Insurance    | 506159.32919933664
+    10 | Wages        | 45183.902420212165
+    11 | Assets       |  614397.7723360856
+    11 | Insurance    |  495769.7432973179
+    11 | Wages        | 34449.485561759815
+    12 | Assets       |  645228.9235526952
+    12 | Insurance    |   535879.653074373
+    12 | Wages        |  32664.18142231223
+(36 rows)
+
+Time: 396.732 ms
+Library Billing System=# SELECT sum(amount)
+Library Billing System-# FROM billing B
+WHERE (EXISTS (SELECT * FROM penalty_income P WHERE B.billingID = P.billingID)
+    OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+    AND B.date >= DATE('1-12-2024');
+FROM billing B
+Library Billing System-# WHERE (EXISTS (SELECT * FROM penalty_income P WHERE B.billingID = P.billingID)
+    OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+    AND B.date >= DATE('1-12-2024');
+WHERE (EXISTS (SELECT * FROM penalty_income P WHERE B.billingID = P.billingID)
+Library Billing System(#     OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+    AND B.date >= DATE('1-12-2024');
+    OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+Library Billing System-#     AND B.date >= DATE('1-12-2024');
+    AND B.date >= DATE('1-12-2024');
+
+        sum        
+-------------------
+ 5507192.334875437
+(1 row)
+
+Time: 1460.171 ms (00:01.460)
+Library Billing System=# SELECT sum(amount)
+Library Billing System-# FROM billing B
+WHERE (EXISTS (SELECT * FROM penalty_income P WHERE B.billingID = P.billingID)
+    OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+    AND B.date >= DATE('1-12-2024');
+FROM billing B
+Library Billing System-# WHERE (EXISTS (SELECT * FROM penalty_income P WHERE B.billingID = P.billingID)
+    OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+    AND B.date >= DATE('1-12-2024');
+WHERE (EXISTS (SELECT * FROM penalty_income P WHERE B.billingID = P.billingID)
+Library Billing System(#     OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+    AND B.date >= DATE('1-12-2024');
+    OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+Library Billing System-#     AND B.date >= DATE('1-12-2024');
+    AND B.date >= DATE('1-12-2024');
+
+        sum        
+-------------------
+ 5507192.334875437
+(1 row)
+
+Time: 503.643 ms
+Library Billing System=# SELECT sum(amount)
+Library Billing System-# FROM billing B
+WHERE (EXISTS (SELECT * FROM penalty_income P WHERE B.billingID = P.billingID)
+    OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+    AND B.date >= DATE('1-12-2024');
+FROM billing B
+Library Billing System-# WHERE (EXISTS (SELECT * FROM penalty_income P WHERE B.billingID = P.billingID)
+    OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+    AND B.date >= DATE('1-12-2024');
+WHERE (EXISTS (SELECT * FROM penalty_income P WHERE B.billingID = P.billingID)
+Library Billing System(#     OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+    AND B.date >= DATE('1-12-2024');
+    OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+Library Billing System-#     AND B.date >= DATE('1-12-2024');
+    AND B.date >= DATE('1-12-2024');
+
+        sum        
+-------------------
+ 5507192.334875437
+(1 row)
+
+Time: 411.062 ms
+Library Billing System=# psql (17.0)
+Type "help" for help.
+
+Library Billing System=# psql (17.0)
+Type "help" for help.
+
+Library Billing System=# psql (17.0)
+Type "help" for help.
+
+Library Billing System=# UPDATE Penalty
+Library Billing System-# SET Status = '1'
+WHERE PenaltyID IN (
+    SELECT p.PenaltyID
+    FROM Penalty p
+    JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+    JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);SET Status = '1'
+Library Billing System-# WHERE PenaltyID IN (
+    SELECT p.PenaltyID
+    FROM Penalty p
+    JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+    JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);WHERE PenaltyID IN (
+Library Billing System(#     SELECT p.PenaltyID
+    FROM Penalty p
+    JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+    JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);    SELECT p.PenaltyID
+Library Billing System(#     FROM Penalty p
+    JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+    JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);    FROM Penalty p
+Library Billing System(#     JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+    JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);    JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+Library Billing System(#     JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);    JOIN Billing b ON b.BillingID = pi.BillingID
+Library Billing System(#     WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+Library Billing System(# ););
+UPDATE 1341
+Library Billing System=# \timing
+Timing is on.
+Library Billing System=# UPDATE Penalty
+Library Billing System-# SET Status = '1'
+WHERE PenaltyID IN (
+    SELECT p.PenaltyID
+    FROM Penalty p
+    JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+    JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);SET Status = '1'
+Library Billing System-# WHERE PenaltyID IN (
+    SELECT p.PenaltyID
+    FROM Penalty p
+    JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+    JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);WHERE PenaltyID IN (
+Library Billing System(#     SELECT p.PenaltyID
+    FROM Penalty p
+    JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+    JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);    SELECT p.PenaltyID
+Library Billing System(#     FROM Penalty p
+    JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+    JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);    FROM Penalty p
+Library Billing System(#     JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+    JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);    JOIN Penalty_Income pi ON pi.PenaltyID = p.PenaltyID
+Library Billing System(#     JOIN Billing b ON b.BillingID = pi.BillingID
+    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);    JOIN Billing b ON b.BillingID = pi.BillingID
+Library Billing System(#     WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+);    WHERE b.Date >= CURRENT_DATE - INTERVAL '7 days'
+Library Billing System(# ););
+UPDATE 1341
+Time: 164.673 ms
+Library Billing System=# UPDATE Wage 
+Library Billing System-# SET Amount = 5000  -- New wage amount
+WHERE EmployeeID = 10;  -- Target employee
+
+UPDATE Billing b
+SET amount = w.Amount
+FROM Wage w
+JOIN Wage_Expense we ON w.EmployeeID = we.EmployeeID
+WHERE b.BillingID = we.BillingID
+AND b.Date >= CURRENT_DATE
+AND w.EmployeeID = 1;  
+SET Amount = 5000  -- New wage amount
+Library Billing System-# WHERE EmployeeID = 10;  -- Target employee
+
+UPDATE Billing b
+SET amount = w.Amount
+FROM Wage w
+JOIN Wage_Expense we ON w.EmployeeID = we.EmployeeID
+WHERE b.BillingID = we.BillingID
+AND b.Date >= CURRENT_DATE
+AND w.EmployeeID = 1;  
+WHERE EmployeeID = 10;  -- Target employee
+
+UPDATE Billing b
+SET amount = w.Amount
+FROM Wage w
+JOIN Wage_Expense we ON w.EmployeeID = we.EmployeeID
+WHERE b.BillingID = we.BillingID
+AND b.Date >= CURRENT_DATE
+AND w.EmployeeID = 1;  
+UPDATE 1
+Time: 372.993 ms
+Library Billing System=# 
+Library Billing System=# UPDATE Billing b
+SET amount = w.Amount
+FROM Wage w
+JOIN Wage_Expense we ON w.EmployeeID = we.EmployeeID
+WHERE b.BillingID = we.BillingID
+AND b.Date >= CURRENT_DATE
+AND w.EmployeeID = 1;  
+UPDATE Billing b
+Library Billing System-# SET amount = w.Amount
+FROM Wage w
+JOIN Wage_Expense we ON w.EmployeeID = we.EmployeeID
+WHERE b.BillingID = we.BillingID
+AND b.Date >= CURRENT_DATE
+AND w.EmployeeID = 1;  
+SET amount = w.Amount
+Library Billing System-# FROM Wage w
+JOIN Wage_Expense we ON w.EmployeeID = we.EmployeeID
+WHERE b.BillingID = we.BillingID
+AND b.Date >= CURRENT_DATE
+AND w.EmployeeID = 1;  
+
+FROM Wage w
+Library Billing System-# JOIN Wage_Expense we ON w.EmployeeID = we.EmployeeID
+WHERE b.BillingID = we.BillingID
+AND b.Date >= CURRENT_DATE
+AND w.EmployeeID = 1;  
+
+JOIN Wage_Expense we ON w.EmployeeID = we.EmployeeID
+Library Billing System-# WHERE b.BillingID = we.BillingID
+AND b.Date >= CURRENT_DATE
+AND w.EmployeeID = 1;  
+
+WHERE b.BillingID = we.BillingID
+Library Billing System-# AND b.Date >= CURRENT_DATE
+AND w.EmployeeID = 1;  
+
+AND b.Date >= CURRENT_DATE
+Library Billing System-# AND w.EmployeeID = 1;  
+
+AND w.EmployeeID = 1;  
+
+UPDATE 1
+Time: 334.754 ms
+Library Billing System=# 
+Library Billing System=# WITH deleted_expenses AS (
+Library Billing System(#     DELETE FROM Insurance_Expense 
+    WHERE InsuranceID IN (
+        SELECT InsuranceID 
+        FROM Insurance 
+        WHERE AssetID = 100  -- Replace with target asset ID
+    )
+    RETURNING *
+)
+DELETE FROM Insurance 
+WHERE AssetID = 3;     DELETE FROM Insurance_Expense 
+Library Billing System(#     WHERE InsuranceID IN (
+        SELECT InsuranceID 
+        FROM Insurance 
+        WHERE AssetID = 100  -- Replace with target asset ID
+    )
+    RETURNING *
+)
+DELETE FROM Insurance 
+WHERE AssetID = 3;     WHERE InsuranceID IN (
+Library Billing System(#         SELECT InsuranceID 
+        FROM Insurance 
+        WHERE AssetID = 100  -- Replace with target asset ID
+    )
+    RETURNING *
+)
+DELETE FROM Insurance 
+WHERE AssetID = 3;         SELECT InsuranceID 
+Library Billing System(#         FROM Insurance 
+        WHERE AssetID = 100  -- Replace with target asset ID
+    )
+    RETURNING *
+)
+DELETE FROM Insurance 
+WHERE AssetID = 3;         FROM Insurance 
+Library Billing System(#         WHERE AssetID = 100  -- Replace with target asset ID
+    )
+    RETURNING *
+)
+DELETE FROM Insurance 
+WHERE AssetID = 3;         WHERE AssetID = 100  -- Replace with target asset ID
+Library Billing System(#     )
+    RETURNING *
+)
+DELETE FROM Insurance 
+WHERE AssetID = 3;     )
+Library Billing System(#     RETURNING *
+)
+DELETE FROM Insurance 
+WHERE AssetID = 3;     RETURNING *
+Library Billing System(# )
+DELETE FROM Insurance 
+WHERE AssetID = 3; )
+Library Billing System-# DELETE FROM Insurance 
+WHERE AssetID = 3; DELETE FROM Insurance 
+Library Billing System-# WHERE AssetID = 3; WHERE AssetID = 3; 
+ERROR:  update or delete on table "insurance" violates foreign key constraint "insurance_expense_insuranceid_fkey" on table "insurance_expense"
+DETAIL:  Key (insuranceid)=(8586) is still referenced from table "insurance_expense".
+Time: 57.027 ms
+Library Billing System=# --8. "Remove a specific book loan record and its associated penalties from the system"
+Library Billing System=# -- Time: 27.947 ms
+DELETE FROM Book_Loan
+WHERE BookLoanId IN (
+    SELECT bl.BookLoanId 
+    FROM Book_Loan bl
+    LEFT JOIN Penalty p ON bl.BookLoanId = p.BookLoanId
+    WHERE bl.BookLoanId = 37  -- Replace with target loan ID
+);-- Time: 27.947 ms
+Library Billing System=# DELETE FROM Book_Loan
+WHERE BookLoanId IN (
+    SELECT bl.BookLoanId 
+    FROM Book_Loan bl
+    LEFT JOIN Penalty p ON bl.BookLoanId = p.BookLoanId
+    WHERE bl.BookLoanId = 37  -- Replace with target loan ID
+);DELETE FROM Book_Loan
+Library Billing System-# WHERE BookLoanId IN (
+    SELECT bl.BookLoanId 
+    FROM Book_Loan bl
+    LEFT JOIN Penalty p ON bl.BookLoanId = p.BookLoanId
+    WHERE bl.BookLoanId = 37  -- Replace with target loan ID
+);WHERE BookLoanId IN (
+Library Billing System(#     SELECT bl.BookLoanId 
+    FROM Book_Loan bl
+    LEFT JOIN Penalty p ON bl.BookLoanId = p.BookLoanId
+    WHERE bl.BookLoanId = 37  -- Replace with target loan ID
+);    SELECT bl.BookLoanId 
+Library Billing System(#     FROM Book_Loan bl
+    LEFT JOIN Penalty p ON bl.BookLoanId = p.BookLoanId
+    WHERE bl.BookLoanId = 37  -- Replace with target loan ID
+);    FROM Book_Loan bl
+Library Billing System(#     LEFT JOIN Penalty p ON bl.BookLoanId = p.BookLoanId
+    WHERE bl.BookLoanId = 37  -- Replace with target loan ID
+);    LEFT JOIN Penalty p ON bl.BookLoanId = p.BookLoanId 
+Library Billing System(#     WHERE bl.BookLoanId = 37  -- Replace with target loan ID
+);    WHERE bl.BookLoanId = 37  -- Replace with target loan ID
+Library Billing System(# ););
+DELETE 1
+Time: 304.270 ms
+Library Billing System=# EXECUTE reader_by_tier('Premium');
+ERROR:  prepared statement "reader_by_tier" does not exist
+Time: 39.193 ms
+Library Billing System=# PREPARE reader_by_tier(varchar) AS
+Library Billing System-# SELECT 
+    r.ReaderID,
+    s.SubscriptionID,
+    s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+SELECT 
+Library Billing System-#     r.ReaderID,
+    s.SubscriptionID,
+    s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    r.ReaderID,
+Library Billing System-#     s.SubscriptionID,
+    s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    s.SubscriptionID,
+Library Billing System-#     s.Renewal_Date,
+    st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    s.Renewal_Date,
+Library Billing System-#     st.Cost as subscription_cost
+FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+    st.Cost as subscription_cost
+Library Billing System-# FROM Reader r
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+FROM Reader r
+Library Billing System-# JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+Library Billing System-# JOIN Subscription_Tiers st ON s.Tier = st.Tier
+WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+JOIN Subscription_Tiers st ON s.Tier = st.Tier
+Library Billing System-# WHERE st.Tier = $1
+ORDER BY s.Renewal_Date;
+WHERE st.Tier = $1
+Library Billing System-# ORDER BY s.Renewal_Date;
+ORDER BY s.Renewal_Date;
+
+PREPARE
+Time: 48.887 ms
+Library Billing System=# 
+Library Billing System=# EXECUTE reader_by_tier('Premium');
+
+ readerid | subscriptionid | renewal_date | subscription_cost 
+----------+----------------+--------------+-------------------
+    19391 |          19259 | 2020-01-01   |                50
+    11841 |          19259 | 2020-01-01   |                50
+    24654 |          19259 | 2020-01-01   |                50
+    10337 |          19259 | 2020-01-01   |                50
+    23836 |          19259 | 2020-01-01   |                50
+    18451 |          19259 | 2020-01-01   |                50
+    12097 |          12400 | 2020-01-02   |                50
+    30768 |          12400 | 2020-01-02   |                50
+     7856 |          16998 | 2020-01-03   |                50
+    33110 |          10277 | 2020-01-03   |                50
+    11214 |          16998 | 2020-01-03   |                50
+    34064 |          16998 | 2020-01-03   |                50
+    12220 |          10277 | 2020-01-03   |                50
+    21164 |          15358 | 2020-01-04   |                50
+    10865 |          15358 | 2020-01-04   |                50
+    26866 |           1515 | 2020-01-04   |                50
+     3713 |          15358 | 2020-01-04   |                50
+     8323 |          15358 | 2020-01-04   |                50
+     6933 |           7393 | 2020-01-04   |                50
+    30914 |          10142 | 2020-01-04   |                50
+    12940 |           7393 | 2020-01-04   |                50
+    20028 |          15358 | 2020-01-04   |                50
+...skipping...
+    19720 |           1505 | 2025-12-24   |                50
+    26754 |          13792 | 2025-12-25   |                50
+     1191 |          13792 | 2025-12-25   |                50
+     3379 |          13896 | 2025-12-26   |                50
+    20783 |          13896 | 2025-12-26   |                50
+     6369 |          13747 | 2025-12-27   |                50
+     6884 |           6175 | 2025-12-27   |                50
+    29621 |           3585 | 2025-12-27   |                50
+    11163 |           3585 | 2025-12-27   |                50
+    30031 |           5592 | 2025-12-28   |                50
+    33466 |           9720 | 2025-12-28   |                50
+     3835 |           5592 | 2025-12-28   |                50
+    34884 |           5592 | 2025-12-28   |                50
+    24660 |           5592 | 2025-12-28   |                50
+    31013 |           3641 | 2025-12-29   |                50
+     7717 |           3641 | 2025-12-29   |                50
+    10134 |          17673 | 2025-12-29   |                50
+    28120 |           4669 | 2025-12-29   |                50
+    19108 |           9241 | 2025-12-30   |                50
+    28179 |           9241 | 2025-12-30   |                50
+     7496 |           9241 | 2025-12-30   |                50
+(7065 rows)
+
+Time: 75.593 ms
+Library Billing System=# PREPARE penalty_revenue(date, date) AS
+Library Billing System-# SELECT 
+    COUNT(p.PenaltyID) as number_of_penalties,
+    SUM(b.amount) as total_revenue
+FROM Penalty p
+JOIN Penalty_Income pi ON p.PenaltyID = pi.PenaltyID
+JOIN Billing b ON pi.BillingID = b.BillingID
+WHERE b.Date BETWEEN $1 AND $2;SELECT 
+Library Billing System-#     COUNT(p.PenaltyID) as number_of_penalties,
+    SUM(b.amount) as total_revenue
+FROM Penalty p
+JOIN Penalty_Income pi ON p.PenaltyID = pi.PenaltyID
+JOIN Billing b ON pi.BillingID = b.BillingID
+WHERE b.Date BETWEEN $1 AND $2;    COUNT(p.PenaltyID) as number_of_penalties,
+Library Billing System-#     SUM(b.amount) as total_revenue
+FROM Penalty p
+JOIN Penalty_Income pi ON p.PenaltyID = pi.PenaltyID
+JOIN Billing b ON pi.BillingID = b.BillingID
+WHERE b.Date BETWEEN $1 AND $2;    SUM(b.amount) as total_revenue
+Library Billing System-# FROM Penalty p
+JOIN Penalty_Income pi ON p.PenaltyID = pi.PenaltyID
+JOIN Billing b ON pi.BillingID = b.BillingID
+WHERE b.Date BETWEEN $1 AND $2;FROM Penalty p
+Library Billing System-# JOIN Penalty_Income pi ON p.PenaltyID = pi.PenaltyID
+JOIN Billing b ON pi.BillingID = b.BillingID
+WHERE b.Date BETWEEN $1 AND $2;JOIN Penalty_Income pi ON p.PenaltyID = pi.PenaltyID
+Library Billing System-# JOIN Billing b ON pi.BillingID = b.BillingID
+WHERE b.Date BETWEEN $1 AND $2;JOIN Billing b ON pi.BillingID = b.BillingID
+Library Billing System-# WHERE b.Date BETWEEN $1 AND $2;WHERE b.Date BETWEEN $1 AND $2;
+PREPARE
+Time: 33.123 ms
+Library Billing System=# EXECUTE penalty_revenue('2024-01-01', '2024-12-31');
+
+ number_of_penalties |   total_revenue   
+---------------------+-------------------
+                1330 | 663874.3104980064
+(1 row)
+
+Time: 213.958 ms
+Library Billing System=# PREPARE expiring_insurance(int) AS
+Library Billing System-# SELECT 
+    i.InsuranceID,
+    i.EndDate,
+    i.Covered_Amount,
+    a.Type as asset_type
+FROM Insurance i
+JOIN Asset a ON i.AssetID = a.AssetID
+WHERE i.EndDate <= CURRENT_DATE + ($1 * INTERVAL '1 month')
+ORDER BY i.EndDate;SELECT 
+Library Billing System-#     i.InsuranceID,
+    i.EndDate,
+    i.Covered_Amount,
+    a.Type as asset_type
+FROM Insurance i
+JOIN Asset a ON i.AssetID = a.AssetID
+WHERE i.EndDate <= CURRENT_DATE + ($1 * INTERVAL '1 month')
+ORDER BY i.EndDate;    i.InsuranceID,
+Library Billing System-#     i.EndDate,
+    i.Covered_Amount,
+    a.Type as asset_type
+FROM Insurance i
+JOIN Asset a ON i.AssetID = a.AssetID
+WHERE i.EndDate <= CURRENT_DATE + ($1 * INTERVAL '1 month')
+ORDER BY i.EndDate;    i.EndDate,
+Library Billing System-#     i.Covered_Amount,
+    a.Type as asset_type
+FROM Insurance i
+JOIN Asset a ON i.AssetID = a.AssetID
+WHERE i.EndDate <= CURRENT_DATE + ($1 * INTERVAL '1 month')
+ORDER BY i.EndDate;    i.Covered_Amount,
+Library Billing System-#     a.Type as asset_type
+FROM Insurance i
+JOIN Asset a ON i.AssetID = a.AssetID
+WHERE i.EndDate <= CURRENT_DATE + ($1 * INTERVAL '1 month')
+ORDER BY i.EndDate;    a.Type as asset_type
+Library Billing System-# FROM Insurance i
+JOIN Asset a ON i.AssetID = a.AssetID
+WHERE i.EndDate <= CURRENT_DATE + ($1 * INTERVAL '1 month')
+ORDER BY i.EndDate;FROM Insurance i
+Library Billing System-# JOIN Asset a ON i.AssetID = a.AssetID
+WHERE i.EndDate <= CURRENT_DATE + ($1 * INTERVAL '1 month')
+ORDER BY i.EndDate;JOIN Asset a ON i.AssetID = a.AssetID
+Library Billing System-# WHERE i.EndDate <= CURRENT_DATE + ($1 * INTERVAL '1 month')
+ORDER BY i.EndDate;WHERE i.EndDate <= CURRENT_DATE + ($1 * INTERVAL '1 month')
+Library Billing System-# ORDER BY i.EndDate;ORDER BY i.EndDate;
+PREPARE
+Time: 45.941 ms
+Library Billing System=# EXECUTE expiring_insurance(3);  -- Shows policies expiring in next 3 months
+
+ insuranceid |  enddate   |   covered_amount   |      asset_type      
+-------------+------------+--------------------+----------------------
+        1069 | 2020-02-09 |  3775.064695311787 | Computer            
+        9118 | 2020-02-12 |  2717.530435594667 | Computer            
+        1578 | 2020-02-15 | 3546.7540950974335 | Building            
+        6752 | 2020-02-18 |   560.818468774398 | Computer            
+        7239 | 2020-02-24 | 1145.7033253039976 | Computer            
+        6757 | 2020-02-24 |  588.9815625798899 | Book                
+        7376 | 2020-02-28 |  3919.294615251767 | Building            
+        7511 | 2020-02-28 |  4038.783770718331 | Furniture           
+       11774 | 2020-02-29 | 1277.4256707449704 | Book                
+         524 | 2020-03-01 | 1613.5713159030415 | Building            
+        4227 | 2020-03-03 | 2764.9873299521496 | Furniture           
+       10546 | 2020-03-04 | 3216.8225273213775 | Furniture           
+        9863 | 2020-03-06 | 4650.3248388485745 | Building            
+         470 | 2020-03-06 | 1717.1348237789414 | Computer            
+        3357 | 2020-03-06 | 2427.8613455612444 | Book                
+        3180 | 2020-03-07 | 2213.6487598717986 | Book                
+        3439 | 2020-03-10 |  1118.460566137358 | Book                
+        4815 | 2020-03-12 |  4324.313380112046 | Computer            
+        5152 | 2020-03-13 | 2042.3140563669854 | Book                
+        8528 | 2020-03-14 | 3646.7342368847535 | Building            
+         194 | 2020-03-15 |  814.1841821756592 | Furniture           
+         417 | 2020-03-18 |  4883.151604436533 | Book                
+...skipping...
+        1117 | 2025-03-20 | 2452.3970137105916 | Computer            
+        2529 | 2025-03-20 | 4187.7269797092395 | Book                
+        2308 | 2025-03-20 |  3716.790008963985 | Computer            
+         238 | 2025-03-21 | 3473.3570021493288 | Computer            
+        8581 | 2025-03-21 |  1410.837591336331 | Computer            
+        4477 | 2025-03-21 | 1391.8483170266213 | Furniture           
+        7122 | 2025-03-21 |  3757.231539048636 | Furniture           
+        5253 | 2025-03-21 |  3619.652246493001 | Computer            
+       11215 | 2025-03-21 | 1314.1626223576964 | Computer            
+        1483 | 2025-03-21 | 1359.5182804921824 | Book                
+        2019 | 2025-03-21 |  3260.271106546276 | Book                
+        2285 | 2025-03-21 | 4283.8572092560125 | Building            
+       10519 | 2025-03-22 | 2730.8504278051173 | Computer            
+        5072 | 2025-03-22 | 4933.1434760212405 | Building            
+        2176 | 2025-03-22 |  899.0935776644044 | Computer            
+        8927 | 2025-03-23 |  4218.561297373431 | Furniture           
+        1963 | 2025-03-23 |  4854.203707794208 | Computer            
+       11619 | 2025-03-23 |  4132.812676045304 | Computer            
+       10270 | 2025-03-23 | 4512.0357964647565 | Computer            
+        8434 | 2025-03-23 | 2649.7094236657467 | Building            
+        3276 | 2025-03-23 |  4289.082593122659 | Furniture           
+(9398 rows)
+
+Time: 71.855 ms
+Library Billing System=# --4. Add A reader to a subscription
+Library Billing System=# -- Time: 61.853 ms
+PREPARE add_reader_to_subscription(int, int) AS
+WITH subscription_limit AS (
+    SELECT s.subscriptionid,
+           st.max_readers,
+           COUNT(r.readerid) as current_readers
+    FROM subscription s
+    JOIN subscription_tiers st ON s.tier = st.tier
+    LEFT JOIN reader r ON s.subscriptionid = r.subscriptionid
+    WHERE s.subscriptionid = $1  -- Target subscription parameter
+    GROUP BY s.subscriptionid, st.max_readers
+    HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+-- Time: 61.853 ms
+Library Billing System=# PREPARE add_reader_to_subscription(int, int) AS
+WITH subscription_limit AS (
+    SELECT s.subscriptionid,
+           st.max_readers,
+           COUNT(r.readerid) as current_readers
+    FROM subscription s
+    JOIN subscription_tiers st ON s.tier = st.tier
+    LEFT JOIN reader r ON s.subscriptionid = r.subscriptionid
+    WHERE s.subscriptionid = $1  -- Target subscription parameter
+    GROUP BY s.subscriptionid, st.max_readers
+    HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+PREPARE add_reader_to_subscription(int, int) AS
+Library Billing System-# WITH subscription_limit AS (
+    SELECT s.subscriptionid,
+           st.max_readers,
+           COUNT(r.readerid) as current_readers
+    FROM subscription s
+    JOIN subscription_tiers st ON s.tier = st.tier
+    LEFT JOIN reader r ON s.subscriptionid = r.subscriptionid
+    WHERE s.subscriptionid = $1  -- Target subscription parameter
+    GROUP BY s.subscriptionid, st.max_readers
+    HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+WITH subscription_limit AS (
+Library Billing System(#     SELECT s.subscriptionid,
+           st.max_readers,
+           COUNT(r.readerid) as current_readers
+    FROM subscription s
+    JOIN subscription_tiers st ON s.tier = st.tier
+    LEFT JOIN reader r ON s.subscriptionid = r.subscriptionid
+    WHERE s.subscriptionid = $1  -- Target subscription parameter
+    GROUP BY s.subscriptionid, st.max_readers
+    HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+    SELECT s.subscriptionid,
+Library Billing System(#            st.max_readers,
+           COUNT(r.readerid) as current_readers
+    FROM subscription s
+    JOIN subscription_tiers st ON s.tier = st.tier
+    LEFT JOIN reader r ON s.subscriptionid = r.subscriptionid
+    WHERE s.subscriptionid = $1  -- Target subscription parameter
+    GROUP BY s.subscriptionid, st.max_readers
+    HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+           st.max_readers,
+Library Billing System(#            COUNT(r.readerid) as current_readers
+    FROM subscription s
+    JOIN subscription_tiers st ON s.tier = st.tier
+    LEFT JOIN reader r ON s.subscriptionid = r.subscriptionid
+    WHERE s.subscriptionid = $1  -- Target subscription parameter
+    GROUP BY s.subscriptionid, st.max_readers
+    HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+           COUNT(r.readerid) as current_readers
+Library Billing System(#     FROM subscription s
+    JOIN subscription_tiers st ON s.tier = st.tier
+    LEFT JOIN reader r ON s.subscriptionid = r.subscriptionid
+    WHERE s.subscriptionid = $1  -- Target subscription parameter
+    GROUP BY s.subscriptionid, st.max_readers
+    HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+    FROM subscription s
+Library Billing System(#     JOIN subscription_tiers st ON s.tier = st.tier
+    LEFT JOIN reader r ON s.subscriptionid = r.subscriptionid
+    WHERE s.subscriptionid = $1  -- Target subscription parameter
+    GROUP BY s.subscriptionid, st.max_readers
+    HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+    JOIN subscription_tiers st ON s.tier = st.tier
+Library Billing System(#     LEFT JOIN reader r ON s.subscriptionid = r.subscriptionid
+    WHERE s.subscriptionid = $1  -- Target subscription parameter
+    GROUP BY s.subscriptionid, st.max_readers
+    HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+    LEFT JOIN reader r ON s.subscriptionid = r.subscriptionid
+Library Billing System(#     WHERE s.subscriptionid = $1  -- Target subscription parameter
+    GROUP BY s.subscriptionid, st.max_readers
+    HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+    WHERE s.subscriptionid = $1  -- Target subscription parameter
+Library Billing System(#     GROUP BY s.subscriptionid, st.max_readers
+    HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+    GROUP BY s.subscriptionid, st.max_readers
+Library Billing System(#     HAVING COUNT(r.readerid) < st.max_readers
+)
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+    HAVING COUNT(r.readerid) < st.max_readers
+Library Billing System(# )
+UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+)
+Library Billing System-# UPDATE reader 
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+UPDATE reader 
+Library Billing System-# SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+WHERE readerid = $2;  -- Target reader parameter
+SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+Library Billing System-# WHERE readerid = $2;  -- Target reader parameter
+WHERE readerid = $2;  -- Target reader parameter
+PREPARE
+Time: 56.598 ms
+Library Billing System=# 
+Library Billing System=# EXECUTE add_reader_to_subscription(8, 10); 
+UPDATE 1
+Time: 40.068 ms
+Library Billing System=# 
