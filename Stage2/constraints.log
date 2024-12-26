@@ -1,0 +1,31 @@
+Library Billing System=# INSERT INTO Billing (amount, Date)
+Library Billing System-# VALUES (-100, '2025-01-01'); VALUES (-100, '2025-01-01'); 
+ERROR:  new row for relation "billing" violates check constraint "positive_billing"
+DETAIL:  Failing row contains (-100, 2025-01-01, 2000002).
+Library Billing System=# INSERT INTO Asset (Type, cost, BillingID)
+Library Billing System-# VALUES ('Computer', -5000, 1); -- Expect an errorVALUES ('Computer', -5000, 1); -- Expect an error
+ERROR:  new row for relation "asset" violates check constraint "positive_asset_cost"
+DETAIL:  Failing row contains (1, Computer            , -5000, 1).
+Library Billing System=# INSERT INTO Insurance (Covered_Amount, EndDate, StartDate, AssetID)
+Library Billing System-# VALUES (-1000, '2024-01-01', '2024-12-31', 1); -- Expect an errorVALUES (-1000, '2024-01-01', '2024-12-31', 1); -- Expect an error
+ERROR:  new row for relation "insurance" violates check constraint "positive_insurance_amount"
+DETAIL:  Failing row contains (1, -1000, 2024-01-01, 2024-12-31, 1).
+Library Billing System=# UPDATE Subscription_Tiers
+Library Billing System-# SET Cost = -20
+WHERE Tier = 'Basic'; -- Expect an errorSET Cost = -20
+Library Billing System-# WHERE Tier = 'Basic'; -- Expect an errorWHERE Tier = 'Basic'; -- Expect an error
+ERROR:  new row for relation "subscription_tiers" violates check constraint "positive_tier_cost"
+DETAIL:  Failing row contains (Basic, -20, 1).
+Library Billing System=# UPDATE Billing
+Library Billing System-# SET Date = '2025-01-01'
+WHERE BillingID = 1;SET Date = '2025-01-01'
+Library Billing System-# WHERE BillingID = 1;WHERE BillingID = 1;
+ERROR:  new row for relation "billing" violates check constraint "valid_billing_date"
+DETAIL:  Failing row contains (996.0677299471058, 2025-01-01, 1).
+Library Billing System=# UPDATE Asset
+Library Billing System-# SET cost = -3000
+WHERE AssetID = 1;SET cost = -3000
+Library Billing System-# WHERE AssetID = 1;WHERE AssetID = 1;
+ERROR:  new row for relation "asset" violates check constraint "positive_asset_cost"
+DETAIL:  Failing row contains (1, Computer            , -3000, 10925).
+Library Billing System=# 

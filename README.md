@@ -235,3 +235,228 @@ The script populates the following number of records for each table:
 - **insurances** = 12,000
 
 **Total Records**: 2,180,105
+
+---
+
+
+# Library Billing System - Stage 2
+
+This repository contains Stage 2 of the Library Billing System database project, implementing backup procedures, queries, indexing, and constraints.
+
+## Backup and Restore Procedures
+
+### SQL Backup
+- File: `backupSQL.sql`
+- Log: `backupSQL.log`
+- Command used:
+```powershell
+pg_dump -U postgres -h localhost -d "Library Billing System" --file=backupSQL.sql --verbose --clean --if-exists 2> backupSQL.log
+```
+
+### PSQL Backup
+- File: `backupPSQL.sql`
+- Log: `backupPSQL.log`
+- Command used:
+```powershell
+pg_dump -U postgres -h localhost -d "Library Billing System" --file=backupPSQL.sql --verbose --clean --if-exists -F c 2> backupPSQL.log
+```
+
+### Restore Procedure
+```powershell
+pg_restore -U postgres -h localhost -v -d "Library Billing System" -F c --if-exists --clean backupPSQL.SQL 2> restorePSQL.log
+```
+
+## Queries
+
+### Select Queries
+1. **Find the total revenue from all subscription tiers across all time,
+ordered by tier with the highest revenue first** (14.869 ms)
+   ```sql
+   SELECT s.Tier, st.Cost, COUNT(*) as number_of_subscribers, SUM(st.Cost) as total_revenue
+   FROM Subscription s
+   JOIN Subscription_Tiers st ON s.Tier = st.Tier
+   GROUP BY s.Tier, st.Cost
+   ORDER BY total_revenue DESC;
+   ```
+
+2. **List all BookLoanIds with Unpaid Penalties** (95.468 ms)
+   ```sql
+   SELECT bl.BookLoanId, p.PenaltyID, p.Cost as penalty_amount
+   FROM Book_Loan bl
+   JOIN Penalty p ON p.BookLoanId = bl.BookLoanId
+   WHERE p.Status = '0'
+   ORDER BY p.Cost DESC;
+   ```
+
+3. **Calculate the total monthly expenses broken down by category** (434.960 ms)
+   ```sql
+   SELECT EXTRACT(MONTH FROM b.Date) as month,
+          'Wages' as expense_type,
+          SUM(b.amount) as total_amount
+   FROM Billing b
+   JOIN Wage_Expense we ON we.BillingID = b.BillingID
+   GROUP BY EXTRACT(MONTH FROM b.Date)
+   UNION ALL
+   -- Similar for Insurance and Assets
+   ORDER BY month, expense_type;
+   ```
+
+4. **Monthly Income Analysis** (597.410 ms)
+   ```sql
+   SELECT sum(amount)
+   FROM billing B
+   WHERE (EXISTS (SELECT * FROM penalty_income P WHERE B.billingID = P.billingID)
+      OR EXISTS (SELECT * FROM subscription_monthly_income S WHERE B.billingID = S.billingID))
+      AND B.date >= DATE('1-12-2024');
+   ```
+
+### Update Queries
+5. **Penalty Status Update** (243.493 ms)
+6. **Employee Wage Adjustment** (372.993 ms)
+
+### Delete Queries
+7. **Insurance Plan Removal** (57.027 ms)
+8. **Loan Record Removal** (304.270 ms)
+
+## Parameterized Queries
+
+1. **Find the total revenue from all subscription tiers across all time,
+ordered by tier with the highest revenue first** (75.593 ms)
+   ```sql
+   PREPARE reader_by_tier(varchar) AS
+   SELECT r.ReaderID, s.SubscriptionID, s.Renewal_Date, st.Cost as subscription_cost
+   FROM Reader r
+   JOIN Subscription s ON r.SubscriptionID = s.SubscriptionID
+   JOIN Subscription_Tiers st ON s.Tier = st.Tier
+   WHERE st.Tier = $1
+   ORDER BY s.Renewal_Date;
+   ```
+
+2. **Penalty Revenue Calculator** (213.958 ms)
+   ```sql
+   PREPARE penalty_revenue(date, date) AS
+   SELECT COUNT(p.PenaltyID) as number_of_penalties,
+          SUM(b.amount) as total_revenue
+   FROM Penalty p
+   JOIN Penalty_Income pi ON p.PenaltyID = pi.PenaltyID
+   JOIN Billing b ON pi.BillingID = b.BillingID
+   WHERE b.Date BETWEEN $1 AND $2;
+   ```
+
+3. **Insurance Expiration Monitor** (71.855 ms)
+   ```sql
+   PREPARE expiring_insurance(int) AS
+   SELECT i.InsuranceID, i.EndDate, i.Covered_Amount, a.Type as asset_type
+   FROM Insurance i
+   JOIN Asset a ON i.AssetID = a.AssetID
+   WHERE i.EndDate <= CURRENT_DATE + ($1 * INTERVAL '1 month')
+   ORDER BY i.EndDate;
+   ```
+
+4. **Reader Subscription Assignment** (40.068 ms)
+   ```sql
+   PREPARE add_reader_to_subscription(int, int) AS
+   WITH subscription_limit AS (
+       SELECT s.subscriptionid, st.max_readers, COUNT(r.readerid) as current_readers
+       FROM subscription s
+       JOIN subscription_tiers st ON s.tier = st.tier
+       LEFT JOIN reader r ON s.subscriptionid = r.subscriptionid
+       WHERE s.subscriptionid = $1
+       GROUP BY s.subscriptionid, st.max_readers
+       HAVING COUNT(r.readerid) < st.max_readers
+   )
+   UPDATE reader 
+   SET subscriptionid = (SELECT subscriptionid FROM subscription_limit)
+   WHERE readerid = $2;
+   ```
+
+## Indices
+
+### Penalty Management Indices
+```sql
+CREATE INDEX idx_penalty_status_date 
+ON Penalty(Status, BookLoanId);
+```
+- Improves performance for:
+  - Query #2 (List unpaid penalties)
+  - Query #5 (Update penalty status)
+  - Query #8 (Delete book loan and penalties)
+- Performance improvement: 95.468ms → 24.593ms for penalty listing
+
+### Subscription Management Indices
+```sql
+CREATE INDEX idx_subscription_tier_renewal 
+ON Subscription(Tier, Renewal_Date);
+```
+- Optimizes:
+  - Query #1 (Total revenue by tier)
+  - Parameterized query #1 (Readers by tier)
+  - Subscription status checks
+- Performance improvement: 147.148ms → 14.869ms for subscription analysis
+
+### Billing Date Indices
+```sql
+CREATE INDEX idx_billing_date 
+ON Billing(Date);
+```
+- Enhances:
+  - Query #3 (Monthly expenses)
+  - Query #4 (Monthly income)
+  - Query #5 (Recent penalty payments)
+  - Query #6 (Wage updates)
+- Performance improvement: 434.960ms → 396.732ms for monthly expense analysis
+
+### Performance Summary
+
+| Query Type | Before Indices | After Indices | Improvement |
+|------------|---------------|---------------|-------------|
+| Subscription | 147.148ms | 14.869ms | 89.9% |
+| Penalties | 95.468ms | 24.593ms | 74.2% |
+| Monthly Expenses | 434.960ms | 396.732ms | 8.8% |
+| Monthly Income | 597.410ms | 411.062ms | 31.2% |
+
+## Constraints
+
+### Subscription Management
+```sql
+ALTER TABLE Subscription_Tiers
+ADD CONSTRAINT positive_tier_cost CHECK (Cost > 0);
+
+ALTER TABLE Subscription
+ADD CONSTRAINT valid_subscription_dates 
+CHECK (Purchase_Date <= CURRENT_DATE AND Renewal_Date > Purchase_Date);
+```
+
+### Financial Constraints
+```sql
+ALTER TABLE Penalty
+ADD CONSTRAINT positive_penalty CHECK (Cost > 0);
+
+ALTER TABLE Wage
+ADD CONSTRAINT positive_wage CHECK (Amount > 0);
+
+ALTER TABLE Asset
+ADD CONSTRAINT positive_asset_cost CHECK (cost > 0);
+
+ALTER TABLE Billing
+ADD CONSTRAINT positive_billing CHECK (amount > 0),
+ADD CONSTRAINT valid_billing_date CHECK (Date <= CURRENT_DATE);
+```
+
+### Insurance Management
+```sql
+ALTER TABLE Insurance
+ADD CONSTRAINT positive_insurance_amount CHECK (Covered_Amount > 0),
+ADD CONSTRAINT valid_insurance_dates CHECK (EndDate > StartDate);
+```
+
+## Error Messages
+
+| Constraint Violation | Error Message | Example Test Case |
+|---------------------|---------------|-------------------|
+| Negative Amount | "violates check constraint positive_billing" | INSERT INTO Billing (amount, Date) VALUES (-100, '2025-01-01') |
+| Future Date | "violates check constraint valid_billing_date" | UPDATE Billing SET Date = '2025-01-01' WHERE BillingID = 1 |
+| Asset Cost | "violates check constraint positive_asset_cost" | INSERT INTO Asset (Type, cost, BillingID) VALUES ('Computer', -5000, 1) |
+| Insurance Amount | "violates check constraint positive_insurance_amount" | INSERT INTO Insurance (Covered_Amount, EndDate, StartDate) VALUES (-1000, '2024-12-31', '2024-01-01') |
+| Subscription Cost | "violates check constraint positive_tier_cost" | UPDATE Subscription_Tiers SET Cost = -20 WHERE Tier = 'Basic' |
+
