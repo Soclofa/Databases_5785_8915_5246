@@ -19,7 +19,6 @@ BEGIN
             WHERE w.EmployeeID = we.EmployeeID) > seniority;
 end;
 $$;
-CREATE FUNCTION
 
 --
 
@@ -44,7 +43,6 @@ BEGIN
         return reader_count
 end;
 $reader_count$;
-CREATE FUNCTION
 
 SELECT * FROM (SELECT s.SubscriptionID, (st.max_readers - count(r.readerid)) dif
 FROM 
