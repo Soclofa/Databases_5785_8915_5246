@@ -18,27 +18,33 @@ WHERE exists (SELECT * FROM wage_expense we WHERE we.BillingID = bcm.BillingID);
 
 
 -- select on view #2: 
-SELECT tier, COUNT(*) AS row_count
-FROM subscriptionPremiumPlus
-GROUP BY tier
-ORDER BY tier;
+select * from DamageFeePenalty dfp
+where dfp.cost > 20;
 
 -- update on view #2: 
-
+UPDATE DamageFeePenalty dfp
+SET status = 1
+where dfp.penaltyID = 5;
 
 
 -- select on view #3: assets that are the insurance expiration date is before 2025
 SELECT 
-    AssetID, 
-    AssetType, 
-    AssetCost, 
-    InsuranceID, 
-    CoveredAmount, 
-    StartDate, 
-    EndDate
+    *
 FROM 
-    AssetInsuranceDetails
+    HighWages
 WHERE 
-    EndDate < '2024-12-31';
+    monthly_payment_date = 10;
 
 -- update on view #3: update wage if the employee got more then 5 paychecks
+Delete 
+FROM HighWages;
+
+--select on view #4:
+select * from ExpensiveAssets ea
+where ea.type = 'Computer';
+
+--update on vew #4:
+UPDATE ExpensiveAssets ea
+SET ea.cost = 499
+where ea.cost = 500;
+

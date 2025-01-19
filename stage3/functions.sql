@@ -44,10 +44,37 @@ BEGIN
 end;
 $reader_count$;
 
-SELECT * FROM (SELECT s.SubscriptionID, (st.max_readers - count(r.readerid)) dif
-FROM 
-Subscription s
-JOIN Subscription_Tiers st ON s.tier = st.tier
-JOIN reader r on r.SubscriptionID = s.SubscriptionID
-GROUP BY s.subscriptionID, st.max_readers)
-WHERE dif = 0;
+
+-- function #3 create high wage view
+
+CREATE or replace  function highWage(my_amount NUMERIC(10, 2))
+RETURNS table (wage_amount NUMERIC(10, 2), wage_employeeid int)
+language plpgsql
+AS
+$$
+BEGIN
+        RETURN QUERY
+        SELECT w.amount::NUMERIC(10, 2), w.employeeid
+        FROM Wage w
+        WHERE w.amount > my_amount;
+end;
+$$;
+
+ SELECT wage_amount, wage_employeeid
+FROM Wage w
+WHERE w.amount > 3000;
+
+
+-- function #4 selects all the billing rows from the billing table given a start and end date
+CREATE or replace  function billingByDate(startDate DATE, endDate DATE)
+RETURNS table (billing_amount NUMERIC(10,2), billing_date DATE, billing_billingID INT)
+language plpgsql
+AS
+$$
+BEGIN
+        RETURN QUERY
+        SELECT b.amount::NUMERIC(10,2), b.date, b.billingID
+        FROM Billing b
+        WHERE b.date >= startDate AND b.date <= endDate;
+end;
+$$;
