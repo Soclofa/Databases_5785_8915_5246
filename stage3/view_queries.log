@@ -1,0 +1,464 @@
+Library Billing System=# \timing
+Timing is on.
+Library Billing System=# -- select on view #1: 
+Library Billing System=# SELECT bcm.billingID, amount, date
+FROM  BillingCurrentMonth bcm 
+JOIN Insurance_Expense ie ON bcm.BillingID = ie.BillingID 
+UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN asset_expense ae ON bcm.BillingID = ae.BillingID 
+UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+SELECT bcm.billingID, amount, date
+Library Billing System-# FROM  BillingCurrentMonth bcm 
+JOIN Insurance_Expense ie ON bcm.BillingID = ie.BillingID 
+UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN asset_expense ae ON bcm.BillingID = ae.BillingID 
+UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+FROM  BillingCurrentMonth bcm 
+Library Billing System-# JOIN Insurance_Expense ie ON bcm.BillingID = ie.BillingID 
+UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN asset_expense ae ON bcm.BillingID = ae.BillingID 
+UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+JOIN Insurance_Expense ie ON bcm.BillingID = ie.BillingID 
+Library Billing System-# UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN asset_expense ae ON bcm.BillingID = ae.BillingID 
+UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+UNION ALL 
+Library Billing System-# SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN asset_expense ae ON bcm.BillingID = ae.BillingID 
+UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+SELECT bcm.billingID, amount, date 
+Library Billing System-# FROM  BillingCurrentMonth bcm 
+JOIN asset_expense ae ON bcm.BillingID = ae.BillingID 
+UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+FROM  BillingCurrentMonth bcm 
+Library Billing System-# JOIN asset_expense ae ON bcm.BillingID = ae.BillingID 
+UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+JOIN asset_expense ae ON bcm.BillingID = ae.BillingID 
+Library Billing System-# UNION ALL 
+SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+UNION ALL 
+Library Billing System-# SELECT bcm.billingID, amount, date 
+FROM  BillingCurrentMonth bcm 
+JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+SELECT bcm.billingID, amount, date 
+Library Billing System-# FROM  BillingCurrentMonth bcm 
+JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+FROM  BillingCurrentMonth bcm 
+Library Billing System-# JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
+ billingid |       amount       |    date    
+-----------+--------------------+------------
+      8117 |  759.8922712517333 | 2024-12-16
+     15187 |  770.0824510451357 | 2024-12-09
+     18881 |  766.5006308551502 | 2024-12-19
+     27560 |  792.0914623619749 | 2024-12-04
+     39012 |  930.1922673493104 | 2024-12-12
+     91787 |  683.4084549554561 | 2024-12-24
+    108995 |  774.4040805846475 | 2024-12-17
+    110787 |  545.4060063626753 | 2024-12-30
+    113282 |  655.3342765146281 | 2024-12-25
+    114083 |   918.435971814694 | 2024-12-25
+    124826 |  182.1722167731053 | 2024-12-25
+    157932 |  976.8112394118308 | 2024-12-28
+    158080 |  561.3276738601859 | 2024-12-08
+    166957 |  344.8256779399929 | 2024-12-06
+    182188 | 312.55222428114706 | 2024-12-02
+    197648 |   981.953449395747 | 2024-12-24
+    206538 |  753.8123649999002 | 2024-12-21
+    209651 |  855.2484920128467 | 2024-12-23
+    219697 |  47.71847184435864 | 2024-12-20
+    241488 | 199.37044605646554 | 2024-12-11
+    242867 |  823.2885866169842 | 2024-12-07
+    250474 |  550.1602127121249 | 2024-12-19
+    250721 |  570.5239947743585 | 2024-12-24
+    268553 |  799.1455514109582 | 2024-12-27
+    281722 | 40.098345357165954 | 2024-12-27
+    282894 |  700.1206995966132 | 2024-12-12
+    283166 |  330.3430963676936 | 2024-12-06
+    291356 |  713.8216382059392 | 2024-12-07
+    292838 | 49.082370739416774 | 2024-12-03
+    343664 |  658.9396453085935 | 2024-12-27
+    350737 | 119.05690405957621 | 2024-12-28
+    351199 |  644.3233546294708 | 2024-12-27
+    351896 |  888.0861777797439 | 2024-12-09
+    374344 | 276.06657092881204 | 2024-12-22
+    379975 | 113.52101110873036 | 2024-12-14
+    383044 | 234.37322038451515 | 2024-12-16
+    406776 |  985.4042464727887 | 2024-12-30
+    410479 | 163.55492131255411 | 2024-12-24
+    432748 | 21.109612901190303 | 2024-12-23
+    467191 |  298.1949771831193 | 2024-12-10
+    475575 |  80.69801043727419 | 2024-12-02
+    493417 | 328.99353785417276 | 2024-12-02
+    547916 | 215.29624068637614 | 2024-12-16
+    556148 | 313.68809207895646 | 2024-12-20
+    589174 |  733.5639704498911 | 2024-12-10
+    594674 | 144.26477380311042 | 2024-12-18
+    594794 |   587.214033957108 | 2024-12-04
+    599233 |  942.1980617120612 | 2024-12-15
+    601309 |   880.370306398213 | 2024-12-23
+...skipping...
+   1492708 | 231.55233207624175 | 2024-12-28
+   1493067 |  745.6997434012463 | 2024-12-06
+   1499921 | 128.44247787657315 | 2024-12-27
+   1502595 |   571.143070542782 | 2024-12-02
+   1506322 |  699.0089876921634 | 2024-12-02
+   1526669 |  291.8493655544102 | 2024-12-08
+   1542878 |   733.674150633955 | 2024-12-06
+   1546060 | 297.31916806569313 | 2024-12-29
+   1554629 |  493.4556220796834 | 2024-12-12
+   1597485 |  340.6456619760371 | 2024-12-08
+   1614890 |   978.938460726992 | 2024-12-04
+   1622499 |  846.8291462281715 | 2024-12-10
+   1623957 |  955.1681130907057 | 2024-12-23
+   1650176 | 223.60913868471377 | 2024-12-30
+   1657106 |  168.1347529083661 | 2024-12-24
+   1671503 |  812.7791454035905 | 2024-12-30
+   1672491 |  700.3926171410759 | 2024-12-21
+   1698026 | 498.06336183266603 | 2024-12-03
+   1713115 |  752.6157590383046 | 2024-12-08
+   1733650 |   586.214157770398 | 2024-12-12
+   1745228 |  666.6168932137924 | 2024-12-23
+   1790329 |  997.3774715476303 | 2024-12-16
+   1797868 |  500.3945563217649 | 2024-12-18
+   1823613 |  232.8348092204623 | 2024-12-26
+   1831125 |  267.7732219119113 | 2024-12-07
+   1840617 |  519.8082064019054 | 2024-12-21
+   1851786 | 430.43392237629956 | 2024-12-18
+   1863850 |   72.4119527158366 | 2024-12-24
+   1888693 |  94.18246715708409 | 2024-12-08
+   1897683 | 141.51705065628647 | 2024-12-07
+   1899010 |  785.2808708319486 | 2024-12-29
+   1928775 |  619.7418481153302 | 2024-12-28
+   1932806 |  679.3876864608885 | 2024-12-30
+   1934816 | 232.92332877536563 | 2024-12-11
+   1943403 | 450.82568731875426 | 2024-12-31
+   1974773 |  821.4858236512638 | 2024-12-09
+   1976255 |  614.6727136224805 | 2024-12-07
+   1987473 |  835.6404646017385 | 2024-12-30
+   1996190 |  996.6787400817602 | 2024-12-24
+   1999199 |  578.2270542337233 | 2024-12-14
+   1687618 |  677.8865328167924 | 2024-12-14
+   1232627 |  976.9389339462936 | 2024-12-14
+   1859025 | 178.53851133234224 | 2024-12-31
+    117933 | 163.32216285469383 | 2024-12-22
+     56940 |  189.6524437459447 | 2024-12-26
+   1463963 |  770.4756913700832 | 2024-12-17
+   1465251 |  563.3440796152878 | 2024-12-11
+    977876 |   628.647320385337 | 2024-12-23
+     28854 | 244.29942774597436 | 2024-12-21
+(366 rows)
+
+Time: 109.481 ms
+Library Billing System=# -- update on view #1: update wage if the employee got more then 5 paychecks
+Library Billing System=# UPDATE BillingCurrentMonth bcm 
+SET amount = amount + 100 
+WHERE exists (SELECT * FROM wage_expense we WHERE we.BillingID = bcm.BillingID);UPDATE BillingCurrentMonth bcm 
+Library Billing System-# SET amount = amount + 100 
+WHERE exists (SELECT * FROM wage_expense we WHERE we.BillingID = bcm.BillingID);SET amount = amount + 100 
+Library Billing System-# WHERE exists (SELECT * FROM wage_expense we WHERE we.BillingID = bcm.BillingID);WHERE exists (SELECT * FROM wage_expense we WHERE we.BillingID = bcm.BillingID);
+UPDATE 9
+Time: 78.992 ms
+Library Billing System=# 
+Library Billing System=# -- select on view #2: 
+select * from DamageFeePenalty dfp
+where dfp.cost > 20;-- select on view #2: 
+Library Billing System=# select * from DamageFeePenalty dfp
+where dfp.cost > 20;select * from DamageFeePenalty dfp
+Library Billing System-# where dfp.cost > 20;where dfp.cost > 20;
+ penaltyid |        cost        |       description        | status | penalty_type | bookloanid 
+-----------+--------------------+--------------------------+--------+--------------+------------
+         1 | 31.929455629208007 | Penalty Description_2    | 1      | Damage Fee   |      10753
+         3 |  29.79805899464255 | Penalty Description_4    | 1      | Damage Fee   |       9480
+         6 |  46.47389376368942 | Penalty Description_7    | 1      | Damage Fee   |      14760
+         7 |  47.94126755535568 | Penalty Description_8    | 0      | Damage Fee   |       1059
+         9 |  37.71386232936145 | Penalty Description_10   | 0      | Damage Fee   |       9977
+        14 | 34.734401522050106 | Penalty Description_15   | 0      | Damage Fee   |      12884
+        18 |  28.59962939760248 | Penalty Description_19   | 1      | Damage Fee   |      17620
+        22 |  32.48372804972843 | Penalty Description_23   | 1      | Damage Fee   |       6082
+        32 | 25.474992627374817 | Penalty Description_33   | 0      | Damage Fee   |       7098
+        38 | 40.011702968734724 | Penalty Description_39   | 1      | Damage Fee   |      10323
+        47 | 30.680742098720444 | Penalty Description_48   | 1      | Damage Fee   |      16813
+        48 |  49.20234342656958 | Penalty Description_49   | 1      | Damage Fee   |      15679
+        55 |  32.54846217603831 | Penalty Description_56   | 1      | Damage Fee   |       1352
+        58 |  46.36580842562789 | Penalty Description_59   | 0      | Damage Fee   |      10804
+        65 |  42.47276650725211 | Penalty Description_66   | 1      | Damage Fee   |      17658
+        78 | 38.421710054836566 | Penalty Description_79   | 1      | Damage Fee   |      10696
+        80 |  36.53776664769455 | Penalty Description_81   | 1      | Damage Fee   |       5266
+        88 |  46.64536549853325 | Penalty Description_89   | 0      | Damage Fee   |      13409
+        92 |  41.78340719098243 | Penalty Description_93   | 1      | Damage Fee   |      17417
+        98 |  32.81813917832248 | Penalty Description_99   | 0      | Damage Fee   |       7221
+       100 |  44.89952534481743 | Penalty Description_101  | 1      | Damage Fee   |       5271
+       102 | 42.810105229775445 | Penalty Description_103  | 1      | Damage Fee   |       7645
+       104 |  33.59013552528947 | Penalty Description_105  | 1      | Damage Fee   |        907
+       108 |   37.3700938440865 | Penalty Description_109  | 0      | Damage Fee   |      16739
+       114 |  41.82061503570185 | Penalty Description_115  | 1      | Damage Fee   |       3076
+       138 | 48.024096879594524 | Penalty Description_139  | 0      | Damage Fee   |       7934
+       143 | 46.920844887327235 | Penalty Description_144  | 1      | Damage Fee   |       2568
+       154 | 47.083281527493405 | Penalty Description_155  | 0      | Damage Fee   |      18493
+       160 |  29.26960288181274 | Penalty Description_161  | 1      | Damage Fee   |       5963
+       188 |  41.15367055255696 | Penalty Description_189  | 1      | Damage Fee   |       5358
+       194 | 22.174437939676185 | Penalty Description_195  | 0      | Damage Fee   |      14045
+       200 | 27.931329954777457 | Penalty Description_201  | 1      | Damage Fee   |       8140
+       202 |  47.69591104000355 | Penalty Description_203  | 0      | Damage Fee   |      17426
+       205 |  38.30415826034012 | Penalty Description_206  | 0      | Damage Fee   |        715
+       209 | 44.277279454807456 | Penalty Description_210  | 1      | Damage Fee   |       5517
+       210 | 28.845751082000284 | Penalty Description_211  | 1      | Damage Fee   |      15008
+       212 |  34.36420174538616 | Penalty Description_213  | 1      | Damage Fee   |      19455
+       216 |  37.40676804179546 | Penalty Description_217  | 1      | Damage Fee   |       8691
+       217 |  33.77726903464083 | Penalty Description_218  | 0      | Damage Fee   |       5490
+       218 |  38.75734777399307 | Penalty Description_219  | 0      | Damage Fee   |       8441
+       227 |  33.45054153296502 | Penalty Description_228  | 0      | Damage Fee   |       5468
+       230 | 33.953829520542214 | Penalty Description_231  | 1      | Damage Fee   |      11662
+       232 |  45.90084197130197 | Penalty Description_233  | 1      | Damage Fee   |      13009
+       244 |  32.00852242094521 | Penalty Description_245  | 1      | Damage Fee   |      17472
+       245 |  46.95828461500479 | Penalty Description_246  | 1      | Damage Fee   |      12012
+       247 |  49.82516091667167 | Penalty Description_248  | 0      | Damage Fee   |      16669
+       256 |  44.29262682780506 | Penalty Description_257  | 0      | Damage Fee   |      11446
+       258 | 40.997198304616866 | Penalty Description_259  | 1      | Damage Fee   |       6856
+       265 | 30.862753824153792 | Penalty Description_266  | 1      | Damage Fee   |      14567
+...skipping...
+      7883 |  49.96315870844051 | Penalty Description_7884 | 1      | Damage Fee   |      19585
+      7892 | 27.003464258060283 | Penalty Description_7893 | 1      | Damage Fee   |       4292
+      7909 |  36.31183311062249 | Penalty Description_7910 | 1      | Damage Fee   |      10271
+      7918 | 45.772648291148826 | Penalty Description_7919 | 1      | Damage Fee   |      12009
+      8010 | 40.942839520114354 | Penalty Description_8011 | 1      | Damage Fee   |      16169
+      8018 |  49.91574492116925 | Penalty Description_8019 | 1      | Damage Fee   |      17807
+      8042 |   36.7595666050596 | Penalty Description_8043 | 1      | Damage Fee   |      13880
+      8052 | 26.568854091813094 | Penalty Description_8053 | 1      | Damage Fee   |      11156
+      8093 | 41.125248525722476 | Penalty Description_8094 | 1      | Damage Fee   |       6691
+      8108 | 27.941313517818028 | Penalty Description_8109 | 1      | Damage Fee   |       3459
+      8112 | 33.199062854768584 | Penalty Description_8113 | 1      | Damage Fee   |      12898
+      8123 | 41.647164196981514 | Penalty Description_8124 | 1      | Damage Fee   |      13208
+      8166 | 22.668839630614908 | Penalty Description_8167 | 1      | Damage Fee   |      13246
+      8215 | 37.571008339197945 | Penalty Description_8216 | 1      | Damage Fee   |        244
+      8219 | 36.977510352313544 | Penalty Description_8220 | 1      | Damage Fee   |      12800
+      8225 | 24.380006551267606 | Penalty Description_8226 | 1      | Damage Fee   |       8608
+      8241 | 26.189401834607423 | Penalty Description_8242 | 1      | Damage Fee   |      14401
+      8249 |  41.95490669712972 | Penalty Description_8250 | 1      | Damage Fee   |        423
+      8255 |  28.88225542675994 | Penalty Description_8256 | 1      | Damage Fee   |      14015
+      8262 | 24.942796560883163 | Penalty Description_8263 | 1      | Damage Fee   |       7316
+      8273 |  29.16584179042987 | Penalty Description_8274 | 1      | Damage Fee   |        382
+      8294 | 28.824015342821884 | Penalty Description_8295 | 1      | Damage Fee   |       9598
+      8307 | 41.440951547626256 | Penalty Description_8308 | 1      | Damage Fee   |      17235
+      8309 |  40.19583519371808 | Penalty Description_8310 | 1      | Damage Fee   |      16050
+      8314 | 38.826776313825505 | Penalty Description_8315 | 1      | Damage Fee   |      18444
+      8317 | 24.555504865977202 | Penalty Description_8318 | 1      | Damage Fee   |      13849
+      8327 | 22.257869948178772 | Penalty Description_8328 | 1      | Damage Fee   |      11590
+      8344 |  40.28041152113407 | Penalty Description_8345 | 1      | Damage Fee   |        795
+      8366 | 32.541211904658056 | Penalty Description_8367 | 1      | Damage Fee   |      16592
+      8367 |  31.50998324438008 | Penalty Description_8368 | 1      | Damage Fee   |      17095
+      8368 |  40.17080547370679 | Penalty Description_8369 | 1      | Damage Fee   |       9181
+      8405 | 25.178542300060524 | Penalty Description_8406 | 1      | Damage Fee   |      15462
+      8428 |  47.62038633964031 | Penalty Description_8429 | 1      | Damage Fee   |      13764
+      8433 |  38.35141741519967 | Penalty Description_8434 | 1      | Damage Fee   |       3643
+      8437 | 30.471320291150306 | Penalty Description_8438 | 1      | Damage Fee   |      12296
+      8754 | 41.531244676046214 | Penalty Description_8755 | 1      | Damage Fee   |       7015
+      8756 | 39.833212043303135 | Penalty Description_8757 | 1      | Damage Fee   |      13602
+      8763 |   40.5415785990506 | Penalty Description_8764 | 1      | Damage Fee   |      16834
+      8848 | 29.731932925935258 | Penalty Description_8849 | 1      | Damage Fee   |       3441
+      8858 |  42.34818775383482 | Penalty Description_8859 | 1      | Damage Fee   |      18037
+      8877 | 31.402577134394907 | Penalty Description_8878 | 1      | Damage Fee   |      11185
+      8941 |  24.64257899001659 | Penalty Description_8942 | 1      | Damage Fee   |       2756
+      8945 |   30.7207686340201 | Penalty Description_8946 | 1      | Damage Fee   |       4239
+       407 | 22.969770912996367 | Penalty Description_408  | 1      | Damage Fee   |      19964
+       417 | 26.046245597366617 | Penalty Description_418  | 1      | Damage Fee   |       6080
+       443 |  38.14027625325012 | Penalty Description_444  | 1      | Damage Fee   |       1957
+      8488 |  45.11270262052713 | Penalty Description_8489 | 1      | Damage Fee   |      19398
+      8525 | 49.192097986905225 | Penalty Description_8526 | 1      | Damage Fee   |       3688
+      8572 | 28.456244462614485 | Penalty Description_8573 | 1      | Damage Fee   |       4332
+(2001 rows)
+
+Time: 26.741 ms
+Library Billing System=# -- update on view #2: 
+Library Billing System=# UPDATE DamageFeePenalty dfp
+SET status = 1
+where dfp.penaltyID = 5;UPDATE DamageFeePenalty dfp
+Library Billing System-# SET status = 1
+where dfp.penaltyID = 5;SET status = 1
+Library Billing System-# where dfp.penaltyID = 5;where dfp.penaltyID = 5;
+UPDATE 1
+Time: 9.226 ms
+Library Billing System=# 
+Library Billing System=# -- select on view #3: assets that are the insurance expiration date is before 2025
+SELECT 
+    *
+FROM 
+    HighWages
+WHERE 
+    monthly_payment_date = 10;-- select on view #3: assets that are the insurance expiration date is before 2025
+Library Billing System=# SELECT 
+    *
+FROM 
+    HighWages
+WHERE 
+    monthly_payment_date = 10;SELECT 
+Library Billing System-#     *
+FROM 
+    HighWages
+WHERE 
+    monthly_payment_date = 10;    *
+Library Billing System-# FROM 
+    HighWages
+WHERE 
+    monthly_payment_date = 10;FROM 
+Library Billing System-#     HighWages
+WHERE 
+    monthly_payment_date = 10;    HighWages
+Library Billing System-# WHERE 
+    monthly_payment_date = 10;WHERE 
+Library Billing System-#     monthly_payment_date = 10;    monthly_payment_date = 10;
+ amount | monthly_payment_date | employeeid 
+--------+----------------------+------------
+(0 rows)
+
+Time: 13.914 ms
+Library Billing System=# -- update on view #3: update wage if the employee got more then 5 paychecks
+Library Billing System=# Delete 
+FROM HighWages;
+Delete 
+Library Billing System-# FROM HighWages;
+FROM HighWages;
+DELETE 3
+Time: 2.593 ms
+Library Billing System=# 
+Library Billing System=# --select on view #4:
+Library Billing System=# select * from ExpensiveAssets ea
+where ea.type = 'Computer';select * from ExpensiveAssets ea
+Library Billing System-# where ea.type = 'Computer';where ea.type = 'Computer';
+ assetid |         type         | cost | billingid 
+---------+----------------------+------+-----------
+       5 | Computer             |  416 |    658760
+      41 | Computer             |  489 |    206932
+      49 | Computer             |  437 |   1482300
+      58 | Computer             |  421 |   1183063
+      62 | Computer             |  448 |    128491
+      73 | Computer             |  451 |   1093405
+      81 | Computer             |  440 |    789783
+     103 | Computer             |  424 |    420040
+     111 | Computer             |  453 |   1749131
+     127 | Computer             |  413 |   1554231
+     129 | Computer             |  436 |    207727
+     165 | Computer             |  497 |    179633
+     229 | Computer             |  419 |    143806
+     230 | Computer             |  416 |   1326812
+     250 | Computer             |  461 |    183122
+     251 | Computer             |  493 |    317595
+     283 | Computer             |  483 |   1980776
+     310 | Computer             |  436 |    120101
+     323 | Computer             |  451 |    407760
+     337 | Computer             |  414 |    295099
+     341 | Computer             |  448 |     39336
+     365 | Computer             |  416 |   1201116
+     368 | Computer             |  497 |    371763
+     388 | Computer             |  476 |    991235
+     395 | Computer             |  483 |    292084
+     414 | Computer             |  492 |    406097
+     456 | Computer             |  419 |   1426722
+     472 | Computer             |  442 |    888496
+     489 | Computer             |  499 |    353446
+     495 | Computer             |  457 |     42957
+     503 | Computer             |  482 |   1947945
+     523 | Computer             |  457 |   1779733
+     527 | Computer             |  499 |    394795
+     530 | Computer             |  474 |   1258220
+     539 | Computer             |  488 |   1833677
+     572 | Computer             |  483 |   1211230
+     573 | Computer             |  470 |   1971668
+     601 | Computer             |  403 |     56553
+     633 | Computer             |  482 |   1368950
+     645 | Computer             |  431 |    701603
+     647 | Computer             |  439 |   1949412
+     648 | Computer             |  487 |     19355
+     659 | Computer             |  427 |   1580260
+     661 | Computer             |  459 |   1612893
+     693 | Computer             |  463 |    511389
+     739 | Computer             |  440 |    771340
+     754 | Computer             |  455 |   1823601
+     755 | Computer             |  440 |    905188
+     757 | Computer             |  420 |    210857
+...skipping...
+   19029 | Computer             |  447 |    802103
+   19039 | Computer             |  416 |    174064
+   19059 | Computer             |  476 |   1595759
+   19064 | Computer             |  499 |    302257
+   19078 | Computer             |  457 |   1227903
+   19079 | Computer             |  422 |   1321731
+   19121 | Computer             |  428 |    320751
+   19124 | Computer             |  483 |    513290
+   19134 | Computer             |  434 |    590868
+   19142 | Computer             |  500 |    906182
+   19144 | Computer             |  487 |   1450530
+   19164 | Computer             |  469 |    265891
+   19194 | Computer             |  428 |   1330610
+   19201 | Computer             |  405 |   1033739
+   19204 | Computer             |  488 |    533446
+   19324 | Computer             |  408 |   1454696
+   19346 | Computer             |  410 |    907949
+   19352 | Computer             |  474 |   1148710
+   19359 | Computer             |  444 |   1303311
+   19366 | Computer             |  421 |    754279
+   19368 | Computer             |  424 |    504766
+   19369 | Computer             |  483 |    566862
+   19378 | Computer             |  454 |   1485913
+   19389 | Computer             |  419 |    713920
+   19435 | Computer             |  493 |   1933674
+   19500 | Computer             |  453 |   1771815
+   19506 | Computer             |  434 |   1897863
+   19562 | Computer             |  491 |    307664
+   19593 | Computer             |  435 |    450845
+   19594 | Computer             |  488 |    548404
+   19602 | Computer             |  494 |    411000
+   19633 | Computer             |  428 |   1393553
+   19674 | Computer             |  477 |    125825
+   19680 | Computer             |  449 |    406296
+   19707 | Computer             |  404 |   1349995
+   19730 | Computer             |  434 |   1695468
+   19736 | Computer             |  410 |   1787044
+   19740 | Computer             |  449 |   1653199
+   19749 | Computer             |  417 |    965008
+   19780 | Computer             |  474 |    492868
+   19793 | Computer             |  485 |    702919
+   19796 | Computer             |  428 |    688652
+   19828 | Computer             |  481 |    257269
+   19847 | Computer             |  450 |   1720939
+   19848 | Computer             |  426 |   1110763
+   19897 | Computer             |  443 |     32968
+   19943 | Computer             |  496 |    607606
+   19968 | Computer             |  435 |    688456
+   19977 | Computer             |  455 |    362068
+(1102 rows)
+
+Time: 30.261 ms
