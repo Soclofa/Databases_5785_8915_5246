@@ -2,7 +2,7 @@
 # Library Billing System - Stage 3
 
 
-# Database Views Documentation
+# SQL Queries Documentation
 
 ## Queries
 
@@ -70,6 +70,7 @@ SELECT
 **Purpose**: Calculates total income and expenses across all financial categories.
 **Timing**: 733.398 ms
 
+# SQL View Documentation
 
 ## Views
 
@@ -185,6 +186,61 @@ SET ea.cost = 499
 WHERE ea.cost = 500;
 ```
 **Time**: 40.342
+
+# SQL Functions Documentation
+
+## Functions
+
+### 1. add_bonus
+```sql
+CREATE or replace function add_bonus(bonus int, seniority int)
+RETURNS void
+language plpgsql
+```
+
+**Purpose**: Adds a bonus amount to employee wages based on seniority (number of paychecks received)
+
+**Usage Example**:
+```sql
+SELECT add_bonus(5, 1);
+```
+
+### 2. readersInSub
+```sql
+CREATE or replace function readersInSub(Subscription_ID int)
+RETURNS int
+language plpgsql
+```
+
+**Purpose**: Counts the number of readers associated with a specific subscription
+
+### 3. highWage
+```sql
+CREATE or replace function highWage(my_amount NUMERIC(10, 2))
+RETURNS table (
+    wage_amount NUMERIC(10, 2),
+    wage_employeeid int
+)
+language plpgsql
+```
+
+**Purpose**: Returns employee IDs and wages for employees earning above a specified amount
+
+
+### 4. billingByDate
+```sql
+CREATE or replace function billingByDate(startDate DATE, endDate DATE)
+RETURNS table (
+    billing_amount NUMERIC(10,2),
+    billing_date DATE,
+    billing_billingID INT
+)
+language plpgsql
+```
+
+**Purpose**: Retrieves billing records within a specified date range
+
+#Visualization Documention
 
 ## Visualizations
 
