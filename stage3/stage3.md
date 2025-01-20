@@ -108,7 +108,7 @@ UPDATE BillingCurrentMonth bcm
 SET amount = amount + 100 
 WHERE exists (SELECT * FROM wage_expense we WHERE we.BillingID = bcm.BillingID);
 ```
-**Purpose**: Update wage if the employee got more then 5 paychecks
+**Purpose**: Giving a bonus to all employees this month. 
 **Time**: 78.992 ms
 
 ### 2. DamageFeePenalty
@@ -259,7 +259,7 @@ $$;
 
 ```
 
-**Purpose**: Returns employee IDs and wages for employees earning above a specified amount
+**Purpose**: Returns the highest paid employees
 **Time**: 191.369 ms
 
 
