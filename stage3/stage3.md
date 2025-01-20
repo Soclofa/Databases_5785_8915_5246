@@ -18,7 +18,7 @@ WHERE (SELECT count(*)
        WHERE w.EmployeeID = we.EmployeeID) > 5;
 ```
 **Purpose**: Increases wages by $100 for employees who have received more than 5 payments.
-**Tables Used**: Wage, Billing, wage_expense, employee
+**Timing**: 481.753 ms
 
 
 ### 2. Maxed-Out Subscriptions Query
@@ -35,7 +35,7 @@ FROM (
 WHERE dif = 0;
 ```
 **Purpose**: Identifies subscriptions that have reached their maximum reader limit.
-**Tables Used**: Subscription, Subscription_Tiers, reader
+**Timing**: 126.125 ms
 
 
 ### 3. Financial Summary Query
@@ -68,7 +68,7 @@ SELECT
     (SELECT SUM(expense) FROM ExpenseCounts) AS TotalExpense;
 ```
 **Purpose**: Calculates total income and expenses across all financial categories.
-**Tables Used**: Billing, subscription_monthly_income, penalty_income, insurance_expense, wage_expense, asset_expense
+**Timing**: 733.398 ms
 
 
 ## Views
@@ -80,9 +80,7 @@ SELECT *
 FROM Billing b
 WHERE b.date > '2024-12-1' AND b.date < '2025-01-01';
 ```
-**Purpose**: Filters billing records for the current month
-**Base Table**: Billing
-**Filter Criteria**: Date range between December 2024 and January 2025
+**Purpose**: Filters billing records for a certain month
 
 #### Operations
 **Select Query**:
@@ -99,12 +97,18 @@ SELECT bcm.billingID, amount, date
 FROM BillingCurrentMonth bcm 
 JOIN Wage_Expense we ON bcm.BillingID = we.BillingID;
 ```
+
+**Time**: 109.481 ms
+
+
 **Update Query**:
 ```sql
 UPDATE BillingCurrentMonth bcm 
 SET amount = amount + 100 
 WHERE exists (SELECT * FROM wage_expense we WHERE we.BillingID = bcm.BillingID);
 ```
+**Purpose**: Update wage if the employee got more then 5 paychecks
+**Time**: 78.992 ms
 
 ### 2. DamageFeePenalty
 ```sql
@@ -114,8 +118,6 @@ FROM Penalty p
 WHERE p.penalty_type = 'Damage Fee';
 ```
 **Purpose**: Isolates damage fee penalties
-**Base Table**: Penalty
-**Filter Criteria**: penalty_type = 'Damage Fee'
 
 #### Operations
 **Select Query**:
@@ -123,12 +125,15 @@ WHERE p.penalty_type = 'Damage Fee';
 SELECT * FROM DamageFeePenalty dfp
 WHERE dfp.cost > 20;
 ```
+**Time**: 26.741 ms 
+
 **Update Query**:
 ```sql
 UPDATE DamageFeePenalty dfp
 SET status = 1
 WHERE dfp.penaltyID = 5;
 ```
+**Time**: 9.226 ms
 
 ### 3. HighWages
 ```sql
@@ -138,8 +143,6 @@ FROM Wage w
 WHERE w.amount > 3070;
 ```
 **Purpose**: Identifies high-wage employees
-**Base Table**: Wage
-**Filter Criteria**: amount > 3070
 
 #### Operations
 **Select Query**:
@@ -148,10 +151,13 @@ SELECT *
 FROM HighWages
 WHERE monthly_payment_date = 10;
 ```
+Time: 13.914 ms
+
 **Delete Query**:
 ```sql
 DELETE FROM HighWages;
 ```
+**Time**: 2.593 ms
 
 ### 4. ExpensiveAssets
 ```sql
@@ -170,12 +176,15 @@ WHERE a.cost > 400;
 SELECT * FROM ExpensiveAssets ea
 WHERE ea.type = 'Computer';
 ```
+**Time**: 30.261
+
 **Update Query**:
 ```sql
 UPDATE ExpensiveAssets ea
 SET ea.cost = 499
 WHERE ea.cost = 500;
 ```
+**Time**: 40.342
 
 ## Visualizations
 
