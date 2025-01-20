@@ -192,55 +192,98 @@ WHERE ea.cost = 500;
 ## Functions
 
 ### 1. add_bonus
-```sql
-CREATE or replace function add_bonus(bonus int, seniority int)
-RETURNS void
 
+
+
+```sql
+CREATE or replace  function add_bonus(bonus int, seniority int)
+RETURNS void
+language plpgsql
+AS
+$$
+BEGIN
+       UPDATE Wage w
+       SET
+               Amount = Amount + bonus
+
+       WHERE (SELECT count(*)
+               FROM Billing b2
+                       JOIN
+            wage_expense we ON b2.BillingID = we.BillingID
+            JOIN
+            employee e ON w.EmployeeID = e.EmployeeID
+            WHERE w.EmployeeID = we.EmployeeID) > seniority;
+end;
+$$;
 ```
 
 **Purpose**: Adds a bonus amount to employee wages based on seniority (number of paychecks received)
-
-**Usage Example**:
-```sql
-SELECT add_bonus(5, 1);
-```
+**Time**: 136.915 ms
 
 ### 2. readersInSub
 ```sql
-CREATE or replace function readersInSub(Subscription_ID int)
+CREATE or replace  function readersInSub(Subscription_ID int)
 RETURNS int
+language plpgsql
+AS
+$reader_count$
+DECLARE
+    reader_count int;
+BEGIN
+        SELECT count(*) reader_count INTO reader_count
+        FROM
+        reader r
+        WHERE r.SubscriptionID = Subscription_ID;
+        return reader_count;
+end;
+$reader_count$;
 
 ```
-
 **Purpose**: Counts the number of readers associated with a specific subscription
+**Time**: 147.897 ms
 
 ### 3. highWage
 ```sql
-CREATE or replace function highWage(my_amount NUMERIC(10, 2))
-RETURNS table (
-    wage_amount NUMERIC(10, 2),
-    wage_employeeid int
-)
+CREATE or replace  function highWage(my_amount NUMERIC(10, 2))
+RETURNS table (wage_amount NUMERIC(10, 2), wage_employeeid int)
+language plpgsql
+AS
+$$
+BEGIN
+        RETURN QUERY
+        SELECT w.amount::NUMERIC(10, 2), w.employeeid
+        FROM Wage w
+        WHERE w.amount > my_amount;
+end;
+$$;
 
 ```
 
 **Purpose**: Returns employee IDs and wages for employees earning above a specified amount
+**Time**: 191.369 ms
 
 
 ### 4. billingByDate
 ```sql
-CREATE or replace function billingByDate(startDate DATE, endDate DATE)
-RETURNS table (
-    billing_amount NUMERIC(10,2),
-    billing_date DATE,
-    billing_billingID INT
-)
+CREATE or replace  function billingByDate(startDate DATE, endDate DATE)
+RETURNS table (billing_amount NUMERIC(10,2), billing_date DATE, billing_billingID INT)
+language plpgsql
+AS
+$$
+BEGIN
+        RETURN QUERY
+        SELECT b.amount::NUMERIC(10,2), b.date, b.billingID
+        FROM Billing b
+        WHERE b.date >= startDate AND b.date <= endDate;
+end;
+$$;
 
 ```
 
 **Purpose**: Retrieves billing records within a specified date range
+**Time**: 138.614 ms
 
-#Visualization Documention
+# Visualization Documention
 
 ## Visualizations
 
