@@ -195,7 +195,7 @@ WHERE ea.cost = 500;
 ```sql
 CREATE or replace function add_bonus(bonus int, seniority int)
 RETURNS void
-language plpgsql
+
 ```
 
 **Purpose**: Adds a bonus amount to employee wages based on seniority (number of paychecks received)
@@ -209,7 +209,7 @@ SELECT add_bonus(5, 1);
 ```sql
 CREATE or replace function readersInSub(Subscription_ID int)
 RETURNS int
-language plpgsql
+
 ```
 
 **Purpose**: Counts the number of readers associated with a specific subscription
@@ -221,7 +221,7 @@ RETURNS table (
     wage_amount NUMERIC(10, 2),
     wage_employeeid int
 )
-language plpgsql
+
 ```
 
 **Purpose**: Returns employee IDs and wages for employees earning above a specified amount
@@ -235,7 +235,7 @@ RETURNS table (
     billing_date DATE,
     billing_billingID INT
 )
-language plpgsql
+
 ```
 
 **Purpose**: Retrieves billing records within a specified date range
