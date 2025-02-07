@@ -462,9 +462,6 @@ ADD CONSTRAINT valid_insurance_dates CHECK (EndDate > StartDate);
 
 # Library Billing System - Stage 3
 
-
-# SQL Queries Documentation
-
 ## Queries
 
 ### 1. Employee Wage Update
@@ -530,8 +527,6 @@ SELECT
 ```
 **Purpose**: Calculates total income and expenses across all financial categories.
 **Timing**: 733.398 ms
-
-# SQL View Documentation
 
 ## Views
 
@@ -648,8 +643,6 @@ WHERE ea.cost = 500;
 ```
 **Time**: 40.342
 
-# SQL Functions Documentation
-
 ## Functions
 
 ### 1. add_bonus
@@ -744,8 +737,6 @@ $$;
 **Purpose**: Retrieves billing records within a specified date range
 **Time**: 138.614 ms
 
-# Visualization Documention
-
 ## Visualizations
 
 ### subscriptions tiers popularity
@@ -778,3 +769,520 @@ ORDER BY mpd_count DESC;
 ![tier popularity graph](graph_visualiser-1735548594092.png)
 
 this graph shows that the almost half of the wages are payed on the 10th, and the least popular payday is the 1st of the month.
+
+# Library Billing System - Stage 4
+
+## ERD
+
+### original ERD
+
+difficulty: the relationship between `penalty` and book loans, is it related to a book loan or a book returned?
+
+![Entity Relationship Diagram](../Stage1/ERD.png)
+
+
+### new ERD for  for Readers
+
+![Entity Relationship Diagram](../Stage1/new_ERD.png)
+
+### merged ERD
+
+![Entity Relationship Diagram](../Stage1/merged_ERD.png)
+
+### json files
+
+merged JSON: [merged.json](./merged.json)
+
+Original JSON: [original.json](./original.json)
+
+new JSON: [new.json](./new.json)
+
+### merged DSD
+
+![Data Structure Diagram](./DSD.png)
+
+### craete tables
+
+``` sql
+CREATE TABLE Employee
+(
+  EmployeeID INT NOT NULL,
+  PRIMARY KEY (EmployeeID)
+);
+
+CREATE TABLE BooksReturned
+(
+  ReturnID INT NOT NULL,
+  ContitionOnReturn INT NOT NULL,
+  ReturnDate INT NOT NULL,
+  PRIMARY KEY (ReturnID)
+);
+
+CREATE TABLE Billing
+(
+  amount INT NOT NULL,
+  Date INT NOT NULL,
+  Type_(monthly/irregular) INT NOT NULL,
+  BillingID INT NOT NULL,
+  PRIMARY KEY (BillingID)
+);
+
+CREATE TABLE Asset_Expense
+(
+  Source INT NOT NULL,
+  BillingID INT NOT NULL,
+  PRIMARY KEY (BillingID),
+  FOREIGN KEY (BillingID) REFERENCES Billing(BillingID)
+);
+
+CREATE TABLE Subscription_Tiers
+(
+  Tier INT NOT NULL,
+  Cost INT NOT NULL,
+  max_readers INT NOT NULL,
+  PRIMARY KEY (Tier)
+);
+
+CREATE TABLE Subscription
+(
+  SubscriptionID INT NOT NULL,
+  Renewal_Date INT NOT NULL,
+  Purchase_Date INT NOT NULL,
+  Tier INT NOT NULL,
+  PRIMARY KEY (SubscriptionID),
+  FOREIGN KEY (Tier) REFERENCES Subscription_Tiers(Tier)
+);
+
+CREATE TABLE Penalty
+(
+  Cost INT NOT NULL,
+  PenaltyID INT NOT NULL,
+  Description INT NOT NULL,
+  Status INT NOT NULL,
+  ReturnID INT NOT NULL,
+  PRIMARY KEY (PenaltyID),
+  FOREIGN KEY (ReturnID) REFERENCES BooksReturned(ReturnID)
+);
+
+CREATE TABLE Wage
+(
+  Amount INT NOT NULL,
+  monthly_payment_date INT NOT NULL,
+  EmployeeID INT NOT NULL,
+  PRIMARY KEY (EmployeeID),
+  FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID)
+);
+
+CREATE TABLE Asset
+(
+  AssetID INT NOT NULL,
+  Type INT NOT NULL,
+  cost INT NOT NULL,
+  BillingID INT NOT NULL,
+  PRIMARY KEY (AssetID),
+  FOREIGN KEY (BillingID) REFERENCES Asset_Expense(BillingID)
+);
+
+CREATE TABLE Penalty_Income
+(
+  BillingID INT NOT NULL,
+  PenaltyID INT NOT NULL,
+  PRIMARY KEY (BillingID),
+  FOREIGN KEY (BillingID) REFERENCES Billing(BillingID),
+  FOREIGN KEY (PenaltyID) REFERENCES Penalty(PenaltyID)
+);
+
+CREATE TABLE Subscription_Monthly_Income
+(
+  BillingID INT NOT NULL,
+  SubscriptionID INT NOT NULL,
+  PRIMARY KEY (BillingID),
+  FOREIGN KEY (BillingID) REFERENCES Billing(BillingID),
+  FOREIGN KEY (SubscriptionID) REFERENCES Subscription(SubscriptionID)
+);
+
+CREATE TABLE Wage_Expense
+(
+  BillingID INT NOT NULL,
+  EmployeeID INT NOT NULL,
+  PRIMARY KEY (BillingID),
+  FOREIGN KEY (BillingID) REFERENCES Billing(BillingID),
+  FOREIGN KEY (EmployeeID) REFERENCES Wage(EmployeeID)
+);
+
+CREATE TABLE Book
+(
+  BookID INT NOT NULL,
+  AssetID INT NOT NULL,
+  PRIMARY KEY (BookID),
+  FOREIGN KEY (AssetID) REFERENCES Asset(AssetID)
+);
+
+CREATE TABLE BooksOnLoan
+(
+  LoanID INT NOT NULL,
+  LoanDate INT NOT NULL,
+  DueDate INT NOT NULL,
+  BookID INT NOT NULL,
+  ReturnID INT NOT NULL,
+  PRIMARY KEY (LoanID),
+  FOREIGN KEY (BookID) REFERENCES Book(BookID),
+  FOREIGN KEY (ReturnID) REFERENCES BooksReturned(ReturnID)
+);
+
+CREATE TABLE Reader
+(
+  ReaderID INT NOT NULL,
+  Address INT NOT NULL,
+  FirstName INT NOT NULL,
+  LastName INT NOT NULL,
+  PhoneNumber INT NOT NULL,
+  SubscriptionID INT NOT NULL,
+  LoanID INT NOT NULL,
+  PRIMARY KEY (ReaderID),
+  FOREIGN KEY (SubscriptionID) REFERENCES Subscription(SubscriptionID),
+  FOREIGN KEY (LoanID) REFERENCES BooksOnLoan(LoanID)
+);
+
+CREATE TABLE Insurance
+(
+  InsuranceID INT NOT NULL,
+  Covered_Amount INT NOT NULL,
+  End_Date INT NOT NULL,
+  Start_Date INT NOT NULL,
+  AssetID INT NOT NULL,
+  PRIMARY KEY (InsuranceID),
+  FOREIGN KEY (AssetID) REFERENCES Asset(AssetID)
+);
+
+CREATE TABLE Insurance_Expense
+(
+  BillingID INT NOT NULL,
+  InsuranceID INT NOT NULL,
+  PRIMARY KEY (BillingID),
+  FOREIGN KEY (BillingID) REFERENCES Billing(BillingID),
+  FOREIGN KEY (InsuranceID) REFERENCES Insurance(InsuranceID)
+);
+
+CREATE TABLE ReadCard
+(
+  CardID INT NOT NULL,
+  CardType INT NOT NULL,
+  ExpirationDate INT NOT NULL,
+  ReaderID INT NOT NULL,
+  PRIMARY KEY (CardID),
+  FOREIGN KEY (ReaderID) REFERENCES Reader(ReaderID)
+);
+
+CREATE TABLE Notifications
+(
+  NotificationId INT NOT NULL,
+  Message INT NOT NULL,
+  SendData INT NOT NULL,
+  IsRead INT NOT NULL,
+  ReaderID INT NOT NULL,
+  PRIMARY KEY (NotificationId),
+  FOREIGN KEY (ReaderID) REFERENCES Reader(ReaderID)
+);
+
+CREATE TABLE Family_Relationship
+(
+  ReaderID_1 INT NOT NULL,
+  Family_RelationshipReaderID_2 INT NOT NULL,
+  PRIMARY KEY (ReaderID_1, Family_RelationshipReaderID_2),
+  FOREIGN KEY (ReaderID_1) REFERENCES Reader(ReaderID),
+  FOREIGN KEY (Family_RelationshipReaderID_2) REFERENCES Reader(ReaderID)
+);
+```
+
+## database merging
+
+### pg_restore
+``` powershell
+pg_restore -U postgres -h localhost -v -d "Library Billing System" -F c --if-exists --clean .\backupPSQL.sql 2> restorePSQL.log
+```
+
+### update the book loan ids in penalty
+
+replacing the loan ids in the penalty table to match the real data
+
+``` sql
+WITH return_ids AS (
+SELECT returnid, ROW_NUMBER() OVER () AS rn FROM (
+	select * 
+	from booksreturned 
+	ORDER BY random() 
+	LIMIT (SELECT COUNT(*) FROM penalty)
+	)
+),
+penalty_ids AS (
+    SELECT penaltyid, ROW_NUMBER() OVER () AS rn FROM penalty
+),
+updated_penalties AS (
+    SELECT p.penaltyid AS penalty_id, r.returnid AS new_return_id
+    FROM penalty_ids p
+    JOIN return_ids r ON p.rn = r.rn
+)
+UPDATE penalty
+SET bookloanid = up.new_return_id
+FROM updated_penalties up
+WHERE penalty.penaltyid = up.penalty_id;
+```
+
+### adding subscriptionID to reader table
+
+added column to reader table
+``` sql
+ALTER TABLE readers
+ADD COLUMN subscriptionid int REFERENCES subscription(subscriptionid) ON DELETE SET NULL;
+```
+
+created a python script to add subscription ids to the reader table:
+
+python script: [reader_subscription.py](./readers_subscription.py)
+
+second run with fixes: [fix_reader_subscription.py](./fix_readers_subscription.py)
+
+set all subscriptions without readers to cancelled
+``` sql
+UPDATE subscription
+SET tier = 'Cancelled'
+WHERE subscriptionid NOT IN (SELECT DISTINCT subscriptionid FROM readers WHERE subscriptionid IS NOT NULL);
+```
+
+## views
+
+### subscription reader view
+
+**purpose:** show the subscriptions that readers are subscribed to
+
+``` sql
+CREATE VIEW SubscriptionReaders AS
+SELECT
+	R.readerId, 
+	R.firstname, 
+	R.lastname,
+	R.address,
+	R.phonenumber,
+	S.subscriptionId,
+	S.renewal_date,
+	S.purchase_date,
+	S.tier
+FROM
+	Readers R
+	JOIN subscription S ON R.subscriptionId = S.subscriptionId;
+```
+
+#### select query
+
+get the `subscription tier` of `'Kimberly Torres'`
+
+``` sql
+select tier from subscriptionreaders
+where firstname = 'Kimberly' and lastname = 'Torres'
+```
+
+result:
+
+``` text
+ tier
+-------
+ Basic
+(1 row)
+
+Time: 13.847 ms
+```
+
+#### update query
+
+some of the subscriptions had 2 readers so i changed their tiers to `premium`
+
+``` sql
+update subscription
+set tier = 'Premium'
+where subscriptionid IN (select subscriptionid 
+	from (select count(*) c, subscriptionid, tier
+				from subscriptionreaders
+				where tier != 'Family' 
+				group by subscriptionid, tier) 
+	where c > 1)
+```
+
+result:
+
+``` text
+UPDATE 829
+Time: 76.764 m
+```
+
+### view loan status
+
+**Purpose:** show the loan status of the books per reader
+
+``` sql
+CREATE VIEW readerLoanStatus AS
+SELECT
+	R.readerId, 
+	R.subscriptionId,
+	BL.LoanID,
+	BL.BookID,
+	BL.LoanDate,
+	BL.DueDate,
+	BR.returnID,
+	BR.ConditionOnReturn,
+	BR.ReturnDate
+FROM
+	Readers R
+    JOIN BooksOnLoan BL ON R.ReaderID = BL.ReaderID
+    FULL JOIN BooksReturned BR ON BL.LoanID = BR.LoanID
+```
+
+### select query
+
+selects book load where the return condition is `poor`
+
+```sql
+select readerid from readerloanstatus
+where conditiononreturn = 'Poor'
+group by readerid
+```
+
+result: 
+
+``` text
+readerid
+----------
+    11233
+	...
+Time: 140.859 ms
+```
+
+### update query
+
+inserts into the `bookreturned` table a new book return
+
+``` sql
+ insert into booksreturned (loanid, conditionOnReturn, returnDate)
+Values (
+       (select loanid from readerLoanStatus
+       where subscriptionid = 26927 and bookid = 44140
+       limit 1),
+       'Good',
+       '2025-02-02');
+```
+
+result:
+
+``` text
+INSERT 0 1
+Time: 7.914 ms
+```
+
+## queries
+
+### select on first view
+
+get the names of all readers that have `peremium` subscriptions
+
+``` sql
+select firstname, lastname
+from subscriptionreaders
+where tier = 'Premium'
+```
+
+result:
+
+``` text
+ firstname  |  lastname
+-------------+-------------
+ Paul        | Villarreal
+ Michael     | James
+ ...
+ Time: 245.010 ms
+```
+
+### update on first view
+
+inserts a new reader into the `reader` table only if the subscription is not full yet
+
+``` sql
+DO
+$do$
+BEGIN
+   IF EXISTS (select count(*),sr.tier 
+   			from subscriptionreaders sr
+			JOIN subscription_tiers st on st.tier = sr.tier
+			where subscriptionid = 29
+			group by sr.tier
+			
+   	) THEN
+	   insert into readers (firstname,lastname, address, phonenumber,subscriptionid)
+	   values ('jack', 'jackson', 'london', '477-233-1380', 29);
+   END IF;
+END
+$do$
+```
+
+result:
+
+``` text
+Time: 19.194 ms
+```
+
+### select second view
+
+gets all the loaned books that where returned by readers that their `subscriptionID` is 29
+
+``` sql
+select count(*), t.subscriptionid,  s.tier
+from (select returnid, loanid, subscriptionid 
+	from readerloanstatus rls
+	where subscriptionid = 29 
+	group by returnid, loanid, subscriptionid) t
+join subscription s on s.subscriptionid = t.subscriptionid
+where returnid is not null
+group by t.subscriptionid, s. tier
+```
+
+result:
+
+``` text
+ count | subscriptionid |  tier
+-------+----------------+--------
+    10 |             29 | Family
+(1 row)
+
+
+Time: 6.809 ms
+```
+
+### insert second view
+
+adds a penalty to the penalty table with values from the returned table,
+it adds a penalty to a loan that its duedate is 2024-12-17 with subscriptionID 29, it adds a bookreturn 'damaged' and a penalty of `Lost Item Fee` 
+
+``` sql
+ with bookreturn as (
+insert into booksreturned (loanid, conditiononreturn, returndate)
+select t.loanid, 'Damaged', '2025-01-30'
+from (select *
+       from readerloanstatus rls
+       where subscriptionid = 29 and duedate = '2024-12-17') t
+where returnid is null
+limit 1
+RETURNING returnid, loanid
+)
+insert into penalty (cost, description, status, penalty_type, bookloanid)
+select cost, 'book lost', 0, 'Lost Item Fee', returnid
+FROM bookreturn br
+join booksonloan bol on bol.loanid = br.loanid
+join book b on b.bookid = bol.bookid
+join asset a on a.assetid = b.assetid;
+```
+
+result
+
+``` text
+Time: 10.183 ms
+INSERT 0 4
+```

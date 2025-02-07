@@ -1,0 +1,1923 @@
+{
+    "version": 2,
+    "www": "erdplus.com",
+    "shapes": [
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Subscription",
+                "type": "regular",
+                "x": 556,
+                "y": 111,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": false,
+                "supertypeEntityId": null,
+                "id": 1
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Penalty",
+                "type": "regular",
+                "x": 814,
+                "y": 442,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": false,
+                "supertypeEntityId": null,
+                "id": 2
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "SubscriptionID",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": true,
+                "x": 488,
+                "y": 44,
+                "id": 3
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Renewal Date",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 561,
+                "y": 25,
+                "id": 11
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Purchase Date",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 644,
+                "y": 28,
+                "id": 13
+            }
+        },
+        {
+            "type": "Relationship",
+            "details": {
+                "name": "penalized",
+                "isIdentifying": false,
+                "x": 954,
+                "y": 421.9000015258789,
+                "slots": [
+                    {
+                        "slotIndex": 0,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "optional",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 122
+                    },
+                    {
+                        "slotIndex": 1,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 2
+                    }
+                ],
+                "id": 32
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Cost",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 867,
+                "y": 340,
+                "id": 39
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Reader",
+                "type": "regular",
+                "x": 875,
+                "y": 112.9000015258789,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": false,
+                "supertypeEntityId": null,
+                "id": 52
+            }
+        },
+        {
+            "type": "Relationship",
+            "details": {
+                "name": "Subscriber",
+                "isIdentifying": false,
+                "x": 711,
+                "y": 79.9000015258789,
+                "slots": [
+                    {
+                        "slotIndex": 0,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 52
+                    },
+                    {
+                        "slotIndex": 1,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "many",
+                        "role": "",
+                        "entityId": 1
+                    }
+                ],
+                "id": 53
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Wage",
+                "type": "weak",
+                "x": 99,
+                "y": 564.9000015258789,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": false,
+                "supertypeEntityId": null,
+                "id": 56
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Amount",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 213,
+                "y": 538.9000015258789,
+                "id": 58
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Employee",
+                "type": "regular",
+                "x": 102,
+                "y": 804.9000015258789,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": false,
+                "supertypeEntityId": null,
+                "id": 63
+            }
+        },
+        {
+            "type": "Relationship",
+            "details": {
+                "name": "Salary",
+                "isIdentifying": true,
+                "x": 107,
+                "y": 668.9000015258789,
+                "slots": [
+                    {
+                        "slotIndex": 0,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 63
+                    },
+                    {
+                        "slotIndex": 1,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 56
+                    }
+                ],
+                "id": 64
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Source",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 355,
+                "y": 330,
+                "id": 68
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Insurance",
+                "type": "regular",
+                "x": 437,
+                "y": 573,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": false,
+                "supertypeEntityId": null,
+                "id": 76
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "InsuranceID",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": true,
+                "x": 318,
+                "y": 595,
+                "id": 77
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Covered Amount",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 375,
+                "y": 651,
+                "id": 78
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "End Date",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 481,
+                "y": 656,
+                "id": 79
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Start Date",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 570,
+                "y": 634,
+                "id": 83
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Asset",
+                "type": "regular",
+                "x": 727,
+                "y": 551.9000015258789,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": false,
+                "supertypeEntityId": null,
+                "id": 91
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "AssetID",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": true,
+                "x": 903,
+                "y": 567.9000015258789,
+                "id": 95
+            }
+        },
+        {
+            "type": "Relationship",
+            "details": {
+                "name": "Insured",
+                "isIdentifying": false,
+                "x": 580,
+                "y": 562.9000015258789,
+                "slots": [
+                    {
+                        "slotIndex": 0,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "optional",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 91
+                    },
+                    {
+                        "slotIndex": 1,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 76
+                    }
+                ],
+                "id": 96
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Type",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 888,
+                "y": 511.9000015258789,
+                "id": 100
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Book Loan",
+                "type": "regular",
+                "x": 1083,
+                "y": 418.5,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": false,
+                "supertypeEntityId": null,
+                "id": 122
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "PenaltyID",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": true,
+                "x": 898,
+                "y": 370.5,
+                "id": 143
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Description",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 783,
+                "y": 340,
+                "id": 189
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "amount",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 225,
+                "y": 72.5,
+                "id": 197
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Date",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 148,
+                "y": 58,
+                "id": 198
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Type (monthly/irregular)",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 96,
+                "y": 37,
+                "id": 199
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Billing",
+                "type": "super",
+                "x": 99,
+                "y": 140,
+                "isDisjointed": true,
+                "isTotalSpecialization": false,
+                "isSubtype": false,
+                "supertypeEntityId": null,
+                "id": 264
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "BillingID",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": true,
+                "x": 50,
+                "y": 70,
+                "id": 322
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Penalty Income",
+                "type": "regular",
+                "x": 411,
+                "y": 250,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": true,
+                "supertypeEntityId": 264,
+                "id": 497
+            }
+        },
+        {
+            "type": "Relationship",
+            "details": {
+                "name": "Penalty payment",
+                "isIdentifying": false,
+                "x": 657,
+                "y": 409.5,
+                "slots": [
+                    {
+                        "slotIndex": 0,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "optional",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 2
+                    },
+                    {
+                        "slotIndex": 1,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 497
+                    }
+                ],
+                "id": 499
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Status",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 748,
+                "y": 388.5,
+                "id": 529
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Subscription Monthly Income",
+                "type": "regular",
+                "x": 270,
+                "y": 139,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": true,
+                "supertypeEntityId": 264,
+                "id": 586
+            }
+        },
+        {
+            "type": "Relationship",
+            "details": {
+                "name": "Subscription payment",
+                "isIdentifying": false,
+                "x": 410,
+                "y": 122.5,
+                "slots": [
+                    {
+                        "slotIndex": 0,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 586
+                    },
+                    {
+                        "slotIndex": 1,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "optional",
+                        "cardinality": "many",
+                        "role": "",
+                        "entityId": 1
+                    }
+                ],
+                "id": 588
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Asset Expense",
+                "type": "regular",
+                "x": 250,
+                "y": 293,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": true,
+                "supertypeEntityId": 264,
+                "id": 637
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Wage Expense",
+                "type": "regular",
+                "x": 50,
+                "y": 284,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": true,
+                "supertypeEntityId": 264,
+                "id": 639
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Insurance Expense",
+                "type": "regular",
+                "x": 150,
+                "y": 354,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": true,
+                "supertypeEntityId": 264,
+                "id": 641
+            }
+        },
+        {
+            "type": "Relationship",
+            "details": {
+                "name": "Purchase",
+                "isIdentifying": false,
+                "x": 530,
+                "y": 416.5,
+                "slots": [
+                    {
+                        "slotIndex": 0,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "many",
+                        "role": "",
+                        "entityId": 637
+                    },
+                    {
+                        "slotIndex": 1,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 91
+                    }
+                ],
+                "id": 643
+            }
+        },
+        {
+            "type": "Relationship",
+            "details": {
+                "name": "PayDay",
+                "isIdentifying": false,
+                "x": 50,
+                "y": 432.5,
+                "slots": [
+                    {
+                        "slotIndex": 0,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "optional",
+                        "cardinality": "many",
+                        "role": "",
+                        "entityId": 56
+                    },
+                    {
+                        "slotIndex": 1,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 639
+                    }
+                ],
+                "id": 671
+            }
+        },
+        {
+            "type": "Relationship",
+            "details": {
+                "name": "monthly Insurance payment",
+                "isIdentifying": false,
+                "x": 381,
+                "y": 453.5,
+                "slots": [
+                    {
+                        "slotIndex": 0,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 641
+                    },
+                    {
+                        "slotIndex": 1,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "optional",
+                        "cardinality": "many",
+                        "role": "",
+                        "entityId": 76
+                    }
+                ],
+                "id": 674
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "BookLoanId",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": true,
+                "x": 1088,
+                "y": 340,
+                "id": 696
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Subscription Tiers",
+                "type": "regular",
+                "x": 652,
+                "y": 234.5,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": false,
+                "supertypeEntityId": null,
+                "id": 720
+            }
+        },
+        {
+            "type": "Relationship",
+            "details": {
+                "name": "Subscription's Tier",
+                "isIdentifying": false,
+                "x": 635,
+                "y": 170.5,
+                "slots": [
+                    {
+                        "slotIndex": 0,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 1
+                    },
+                    {
+                        "slotIndex": 1,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "optional",
+                        "cardinality": "many",
+                        "role": "",
+                        "entityId": 720
+                    }
+                ],
+                "id": 721
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Tier",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": true,
+                "x": 555,
+                "y": 282.5,
+                "id": 724
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "Cost",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 633,
+                "y": 303.5,
+                "id": 725
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "max readers",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 708,
+                "y": 296.5,
+                "id": 726
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "cost",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 875,
+                "y": 624.5,
+                "id": 732
+            }
+        },
+        {
+            "type": "Entity",
+            "details": {
+                "name": "Book",
+                "type": "regular",
+                "x": 743,
+                "y": 743.5,
+                "isDisjointed": true,
+                "isTotalSpecialization": true,
+                "isSubtype": false,
+                "supertypeEntityId": null,
+                "id": 734
+            }
+        },
+        {
+            "type": "Relationship",
+            "details": {
+                "name": "Relationship",
+                "isIdentifying": false,
+                "x": 751,
+                "y": 637.5,
+                "slots": [
+                    {
+                        "slotIndex": 0,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "mandatory",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 734
+                    },
+                    {
+                        "slotIndex": 1,
+                        "minimum": "",
+                        "maximum": "",
+                        "participation": "optional",
+                        "cardinality": "one",
+                        "role": "",
+                        "entityId": 91
+                    }
+                ],
+                "id": 735
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "ReaderID",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": true,
+                "x": 881,
+                "y": 40.5,
+                "id": 765
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "EmployeeID",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": true,
+                "x": 105,
+                "y": 889.5,
+                "id": 768
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "BookID",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": true,
+                "x": 882,
+                "y": 741.5,
+                "id": 770
+            }
+        },
+        {
+            "type": "Attribute",
+            "details": {
+                "name": "monthly payment date",
+                "isDerived": false,
+                "isMultivalued": false,
+                "isOptional": false,
+                "isComposite": false,
+                "isUnique": false,
+                "x": 164,
+                "y": 494.5,
+                "id": 799
+            }
+        },
+        {
+      "type": "Table",
+      "details": {
+        "name": "Readers",
+        "x": 418,
+        "y": 313.36666107177734,
+        "sort": "automatic",
+        "attributes": [
+          {
+            "names": ["ReaderID"],
+            "order": 1,
+            "pkMember": true,
+            "optional": false,
+            "soloUnique": true,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "id": 1
+          },
+          {
+            "names": ["FirstName"],
+            "order": 2,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "varcharn",
+            "dataTypeSize": "50",
+            "id": 2
+          },
+          {
+            "names": ["LastName"],
+            "order": 3,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "varcharn",
+            "dataTypeSize": "50",
+            "id": 3
+          },
+          {
+            "names": ["Address"],
+            "order": 4,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "custom",
+            "dataTypeSize": "Text",
+            "id": 4
+          },
+          {
+            "names": ["PhoneNumber"],
+            "order": 5,
+            "pkMember": false,
+            "optional": true,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "varcharn",
+            "dataTypeSize": "25",
+            "id": 5
+          }
+        ],
+        "uniqueGroups": [],
+        "id": 1
+      }
+    },
+    {
+      "type": "Table",
+      "details": {
+        "name": "FamilyTies",
+        "x": 678,
+        "y": 131.36666107177734,
+        "sort": "automatic",
+        "attributes": [
+          {
+            "names": ["TieID"],
+            "order": 1,
+            "pkMember": true,
+            "optional": false,
+            "soloUnique": true,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "id": 1
+          },
+          {
+            "names": ["RelatedReaderID"],
+            "order": 3,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "id": 3
+          },
+          {
+            "names": ["RelationType"],
+            "order": 4,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "varcharn",
+            "dataTypeSize": "8",
+            "id": 4
+          },
+          {
+            "names": ["ReaderID"],
+            "order": 5,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": true,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "references": [{ "tableId": 1, "attributeId": 1 }],
+            "id": 5
+          }
+        ],
+        "uniqueGroups": [],
+        "id": 2
+      }
+    },
+    {
+      "type": "Table",
+      "details": {
+        "name": "ReaderCard",
+        "x": 673,
+        "y": 240.36666107177734,
+        "sort": "automatic",
+        "attributes": [
+          {
+            "names": ["CardID"],
+            "order": 1,
+            "pkMember": true,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "id": 1
+          },
+          {
+            "names": ["CardTye"],
+            "order": 3,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "varcharn",
+            "dataTypeSize": "20",
+            "id": 3
+          },
+          {
+            "names": ["ExpirationDate"],
+            "order": 4,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "date",
+            "dataTypeSize": "",
+            "id": 4
+          },
+          {
+            "names": ["ReaderID"],
+            "order": 5,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": true,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "references": [{ "tableId": 1, "attributeId": 1 }],
+            "id": 5
+          }
+        ],
+        "uniqueGroups": [],
+        "id": 6
+      }
+    },
+    {
+      "type": "Table",
+      "details": {
+        "name": "BooksOnLoan",
+        "x": 667,
+        "y": 330.36666107177734,
+        "sort": "automatic",
+        "attributes": [
+          {
+            "names": ["LoanID"],
+            "order": 1,
+            "pkMember": true,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "id": 1
+          },
+          {
+            "names": ["ReaderID"],
+            "order": 2,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "id": 2
+          },
+          {
+            "names": ["BookID"],
+            "order": 3,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "id": 3
+          },
+          {
+            "names": ["LoanDate"],
+            "order": 4,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "date",
+            "dataTypeSize": "",
+            "id": 4
+          },
+          {
+            "names": ["DueDate"],
+            "order": 5,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "date",
+            "dataTypeSize": "",
+            "id": 5
+          },
+          {
+            "names": ["ReaderID"],
+            "order": 6,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": true,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "references": [{ "tableId": 1, "attributeId": 1 }],
+            "id": 6
+          }
+        ],
+        "uniqueGroups": [],
+        "id": 8
+      }
+    },
+    {
+      "type": "Table",
+      "details": {
+        "name": "BooksReturned",
+        "x": 881,
+        "y": 344.36666107177734,
+        "sort": "automatic",
+        "attributes": [
+          {
+            "names": ["ReturnID"],
+            "order": 1,
+            "pkMember": true,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "id": 1
+          },
+          {
+            "names": ["ConditionOnReturn"],
+            "order": 2,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "custom",
+            "dataTypeSize": "TEXT",
+            "id": 2
+          },
+          {
+            "names": ["ReturnDate"],
+            "order": 3,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "date",
+            "dataTypeSize": "",
+            "id": 3
+          },
+          {
+            "names": ["LoanID"],
+            "order": 4,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": true,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "references": [{ "tableId": 8, "attributeId": 1 }],
+            "id": 4
+          }
+        ],
+        "uniqueGroups": [],
+        "id": 10
+      }
+    },
+    {
+      "type": "Table",
+      "details": {
+        "name": "NotificationID",
+        "x": 666,
+        "y": 488.36666107177734,
+        "sort": "automatic",
+        "attributes": [
+          {
+            "names": ["NotificationID"],
+            "order": 1,
+            "pkMember": true,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "id": 1
+          },
+          {
+            "names": ["Message"],
+            "order": 2,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "custom",
+            "dataTypeSize": "TEXT",
+            "id": 2
+          },
+          {
+            "names": ["SentDate"],
+            "order": 3,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "date",
+            "dataTypeSize": "",
+            "id": 3
+          },
+          {
+            "names": ["IsRead"],
+            "order": 4,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "custom",
+            "dataTypeSize": "BOOL",
+            "id": 4
+          },
+          {
+            "names": ["ReaderID"],
+            "order": 5,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": true,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "references": [{ "tableId": 1, "attributeId": 1 }],
+            "id": 5
+          }
+        ],
+        "uniqueGroups": [],
+        "id": 12
+      }
+    },
+    {
+      "type": "Table",
+      "details": {
+        "name": "Book",
+        "x": 431.0000305175781,
+        "y": 111.36666107177734,
+        "sort": "automatic",
+        "attributes": [
+          {
+            "names": ["ID"],
+            "order": 1,
+            "pkMember": true,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "id": 1
+          },
+          {
+            "names": ["Release Date"],
+            "order": 2,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "date",
+            "dataTypeSize": "",
+            "id": 2
+          },
+          {
+            "names": ["Page Count"],
+            "order": 3,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": null,
+            "id": 3
+          },
+          {
+            "names": ["Format"],
+            "order": 4,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "varcharn",
+            "dataTypeSize": "1000",
+            "id": 4
+          },
+          {
+            "names": ["Description"],
+            "order": 5,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "varcharn",
+            "dataTypeSize": "1000",
+            "id": 5
+          },
+          {
+            "names": ["ISBN"],
+            "order": 6,
+            "pkMember": false,
+            "optional": false,
+            "soloUnique": false,
+            "fk": false,
+            "dataType": "int",
+            "dataTypeSize": "",
+            "id": 6
+          }
+        ],
+        "uniqueGroups": [],
+        "id": 14
+      }
+    }
+  ],
+  "connectors": [
+    {
+      "type": "TableConnector",
+      "details": { "fkAttributeId": 5, "id": 5 },
+      "source": 1,
+      "destination": 2
+    },
+    {
+      "type": "TableConnector",
+      "details": { "fkAttributeId": 5, "id": 7 },
+      "source": 1,
+      "destination": 6
+    },
+    {
+      "type": "TableConnector",
+      "details": { "fkAttributeId": 6, "id": 9 },
+      "source": 1,
+      "destination": 8
+    },
+    {
+      "type": "TableConnector",
+      "details": { "fkAttributeId": 4, "id": 11 },
+      "source": 8,
+      "destination": 10
+    },
+    {
+      "type": "TableConnector",
+      "details": { "fkAttributeId": 5, "id": 13 },
+      "source": 1,
+      "destination": 12
+    },
+    {
+            "type": "Connector",
+            "details": {
+                "id": 800
+            },
+            "source": 13,
+            "destination": 1
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 1,
+                "id": 34
+            },
+            "source": 2,
+            "destination": 32
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 801
+            },
+            "source": 39,
+            "destination": 2
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 0,
+                "id": 54
+            },
+            "source": 52,
+            "destination": 53
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 1,
+                "id": 55
+            },
+            "source": 1,
+            "destination": 53
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 802
+            },
+            "source": 58,
+            "destination": 56
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 0,
+                "id": 65
+            },
+            "source": 63,
+            "destination": 64
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 1,
+                "id": 66
+            },
+            "source": 56,
+            "destination": 64
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 803
+            },
+            "source": 77,
+            "destination": 76
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 804
+            },
+            "source": 78,
+            "destination": 76
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 805
+            },
+            "source": 79,
+            "destination": 76
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 806
+            },
+            "source": 83,
+            "destination": 76
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 0,
+                "id": 97
+            },
+            "source": 91,
+            "destination": 96
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 1,
+                "id": 98
+            },
+            "source": 76,
+            "destination": 96
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 807
+            },
+            "source": 95,
+            "destination": 91
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 808
+            },
+            "source": 100,
+            "destination": 91
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 809
+            },
+            "source": 143,
+            "destination": 2
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 0,
+                "id": 188
+            },
+            "source": 122,
+            "destination": 32
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 810
+            },
+            "source": 189,
+            "destination": 2
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 811
+            },
+            "source": 199,
+            "destination": 264
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 812
+            },
+            "source": 198,
+            "destination": 264
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 813
+            },
+            "source": 197,
+            "destination": 264
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 814
+            },
+            "source": 322,
+            "destination": 264
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 815
+            },
+            "source": 3,
+            "destination": 1
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "isSupertypeConnector": true,
+                "id": 498
+            },
+            "source": 497,
+            "destination": 264
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 0,
+                "id": 500
+            },
+            "source": 2,
+            "destination": 499
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 1,
+                "id": 501
+            },
+            "source": 497,
+            "destination": 499
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 816
+            },
+            "source": 529,
+            "destination": 2
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "isSupertypeConnector": true,
+                "id": 587
+            },
+            "source": 586,
+            "destination": 264
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 0,
+                "id": 589
+            },
+            "source": 586,
+            "destination": 588
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 1,
+                "id": 590
+            },
+            "source": 1,
+            "destination": 588
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "isSupertypeConnector": true,
+                "id": 638
+            },
+            "source": 637,
+            "destination": 264
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "isSupertypeConnector": true,
+                "id": 640
+            },
+            "source": 639,
+            "destination": 264
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "isSupertypeConnector": true,
+                "id": 642
+            },
+            "source": 641,
+            "destination": 264
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 0,
+                "id": 644
+            },
+            "source": 637,
+            "destination": 643
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 1,
+                "id": 645
+            },
+            "source": 91,
+            "destination": 643
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 0,
+                "id": 672
+            },
+            "source": 56,
+            "destination": 671
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 1,
+                "id": 673
+            },
+            "source": 639,
+            "destination": 671
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 0,
+                "id": 675
+            },
+            "source": 641,
+            "destination": 674
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 1,
+                "id": 676
+            },
+            "source": 76,
+            "destination": 674
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 817
+            },
+            "source": 68,
+            "destination": 637
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 818
+            },
+            "source": 696,
+            "destination": 122
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 819
+            },
+            "source": 11,
+            "destination": 1
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 0,
+                "id": 722
+            },
+            "source": 1,
+            "destination": 721
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 1,
+                "id": 723
+            },
+            "source": 720,
+            "destination": 721
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 820
+            },
+            "source": 725,
+            "destination": 720
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 821
+            },
+            "source": 724,
+            "destination": 720
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 822
+            },
+            "source": 726,
+            "destination": 720
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 823
+            },
+            "source": 732,
+            "destination": 91
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 0,
+                "id": 736
+            },
+            "source": 734,
+            "destination": 735
+        },
+        {
+            "type": "RelationshipConnector",
+            "details": {
+                "slotIndex": 1,
+                "id": 737
+            },
+            "source": 91,
+            "destination": 735
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 824
+            },
+            "source": 765,
+            "destination": 52
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 825
+            },
+            "source": 768,
+            "destination": 63
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 826
+            },
+            "source": 770,
+            "destination": 734
+        },
+        {
+            "type": "Connector",
+            "details": {
+                "id": 827
+            },
+            "source": 799,
+            "destination": 56
+        }
+    ],
+    "width": 2000,
+    "height": 1000
+}
