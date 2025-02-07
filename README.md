@@ -751,7 +751,7 @@ ORDER BY
     tier_count DESC;
 ```
 
-![tier popularity graph](visualizaiton-subscription-tiers.png)
+![tier popularity graph](./stage3/visualizaiton-subscription-tiers.png)
 
 this graph shows that the tier type is split about equal.
 
@@ -766,7 +766,7 @@ group by monthly_payment_date
 ORDER BY mpd_count DESC;
 ```
 
-![tier popularity graph](graph_visualiser-1735548594092.png)
+![tier popularity graph](./Stage3/graph_visualiser-1735548594092.png)
 
 this graph shows that the almost half of the wages are payed on the 10th, and the least popular payday is the 1st of the month.
 
@@ -778,16 +778,16 @@ this graph shows that the almost half of the wages are payed on the 10th, and th
 
 difficulty: the relationship between `penalty` and book loans, is it related to a book loan or a book returned?
 
-![Entity Relationship Diagram](../Stage1/ERD.png)
+![Entity Relationship Diagram](./Stage1/ERD.png)
 
 
 ### new ERD for  for Readers
 
-![Entity Relationship Diagram](../Stage1/new_ERD.png)
+![Entity Relationship Diagram](./Stage4/new_ERD.png)
 
 ### merged ERD
 
-![Entity Relationship Diagram](../Stage1/merged_ERD.png)
+![Entity Relationship Diagram](./Stage4/merged_ERD.png)
 
 ### json files
 
@@ -799,7 +799,7 @@ new JSON: [new.json](./new.json)
 
 ### merged DSD
 
-![Data Structure Diagram](./DSD.png)
+![Data Structure Diagram](./Stage4/DSD.png)
 
 ### craete tables
 
